@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Tu Guía SIBO y Dieta Personalizada"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Guía SIBO y Dieta Personalizada</title>
+
+    <!-- Tailwind CSS CDN - ESTO HACE EL DISEÑO -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fin Tailwind CSS CDN -->
+
+    <style>
+      /* Asegura que el body use el 100% del alto disponible */
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      // --- DIET DATA ---
+      const dietPlan = [
+        {
+          day: 'Lunes',
+          breakfast: [
+            'Leche de almendras (sin azúcar) con copos de avena certificados sin gluten (40g) cocidos con agua y canela.',
+            '1/2 taza de arándanos frescos.',
+            'Opcional: Tu batido de proteína Paleobull Savia y Elixir Colágeno + TCM aquí.'
+          ],
+          midMorning: '1 naranja pequeña.',
+          snacksBetweenMeals: [
+            '1 huevo cocido.',
+            'Palitos de zanahoria.'
+          ],
+          lunch: [
+            'Pechuga de pollo a la plancha (180g, sin piel).',
+            'Salteado ligero de espinacas y zanahorias (mínimo AOVE, sin ajo/cebolla).',
+            'Arroz blanco (60g).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: '1 plátano pequeño (poco maduro).',
+          dinner: [
+            'Merluza al horno (220g).',
+            'Patatas hervidas (150g) y judías verdes al vapor (aprox. 75g).',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Martes',
+          breakfast: [
+            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).',
+            '1 rebanada de pan de arroz tostado.'
+          ],
+          midMorning: '1 kiwi.',
+          snacksBetweenMeals: [
+            '2-3 tortitas de maíz/arroz con 1-2 lonchas de jamón cocido (verificar sin lactosa/dextrosa/azúcares).'
+          ],
+          lunch: [
+            'Pasta de arroz o maíz (80g, sin gluten) con atún al natural (escurrido al máximo).',
+            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: 'Tortitas de maíz (2-3 unidades) con queso fresco desnatado sin lactosa.',
+          dinner: [
+            'Crema de calabacín y zanahoria (hecha con caldo de pollo casero, mínimo AOVE, sin cebolla/ajo).',
+            'Pechuga de pavo a la plancha (180g, sin piel).',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Miércoles',
+          breakfast: [
+            'Yogur natural desnatado sin lactosa con 1/2 taza de fresas y 1 cucharada de semillas de chía.',
+            'Infusión de menta.'
+          ],
+          midMorning: '10-12 almendras (si las toleras, porción controlada).',
+          snacksBetweenMeals: [
+            'Yogur natural desnatado sin lactosa con una pizca de canela.'
+          ],
+          lunch: [
+            'Lomo de cerdo magro a la plancha (180g, retirar grasa visible).',
+            'Ensalada de lechuga, pepino y pimiento rojo (porción controlada).',
+            'Quinoa (60g).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: '1/2 taza de arándanos frescos.',
+          dinner: [
+            'Trucha (o lenguado/platija) a la plancha (220g).',
+            'Puntas de espárragos (1/2 taza) salteadas con mínimo AOVE.',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Jueves',
+          breakfast: [
+            'Batido: 1 plátano pequeño (poco maduro), 1 taza de leche de arroz (sin azúcar), 1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
+          ],
+          midMorning: '1 mandarina pequeña.',
+          snacksBetweenMeals: [
+            'Rodajas de pepino.',
+            'Pechuga de pavo a la plancha fría (pequeña porción).'
+          ],
+          lunch: [
+            'Pavo al horno sin piel (180g).',
+            'Boniato asado (200g) y acelgas hervidas.',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: 'Tortitas de maíz (2-3 unidades) con tomate natural triturado (sin cebolla/ajo).',
+          dinner: [
+            'Sepia o pota a la plancha (220g).',
+            'Salteado de calabacín y zanahoria (mínimo AOVE, sin ajo/cebolla).',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Viernes',
+          breakfast: [
+            'Tortilla de 2 claras de huevo con pimiento verde picado (mínimo AOVE).',
+            '1/2 taza de frambuesas.',
+            'Infusión de jengibre.'
+          ],
+          midMorning: '10-12 nueces de macadamia (controlar porción por la grasa).',
+          snacksBetweenMeals: [
+            '1/2 plátano verde/poco maduro.',
+            'Caldo de pollo casero (sin FODMAPs).'
+          ],
+          lunch: [
+            'Arroz blanco (60g) con pechuga de pollo desmenuzada (180g).',
+            'Cubos de calabaza asada (100g).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: 'Yogur natural desnatado sin lactosa con una pizca de canela.',
+          dinner: [
+            'Ensalada grande de pollo a la plancha (150g) con lechuga romana, pepino, rabanitos y tomate cherry.',
+            'Aderezo: AOVE (controlando cantidad), vinagre de manzana y sal.',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Sábado',
+          breakfast: [
+            'Leche de almendras (sin azúcar) con copos de avena certificados sin gluten (40g) cocidos con agua.',
+            '1 kiwi.'
+          ],
+          midMorning: '1 naranja pequeña.',
+          snacksBetweenMeals: [
+            '1 huevo cocido.',
+            'Hojas de lechuga.'
+          ],
+          lunch: [
+            'Bacalao al vapor (220g).',
+            'Patata asada (150g) y judías verdes al vapor (aprox. 75g).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: 'Tortitas de maíz (2-3 unidades) con una pizca de orégano.',
+          dinner: [
+            'Crema de verduras bajas en FODMAP (calabacín, zanahoria, patata; hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).',
+            'Huevo cocido (2 unidades).',
+            'Gelatina sin azúcar.'
+          ]
+        },
+        {
+          day: 'Domingo',
+          breakfast: [
+            'Huevos pasados por agua (2 unidades).',
+            '1 rebanada de pan de arroz tostado con un chorrito mínimo de AOVE.',
+            '1/2 taza de fresas.'
+          ],
+          midMorning: '1 plátano pequeño (poco maduro).',
+          snacksBetweenMeals: [
+            '2-3 tortitas de maíz/arroz con atún al natural (bien escurrido).'
+          ],
+          lunch: [
+            'Asado de ternera magra (sin grasa visible, 180g).',
+            'Ensalada de lechuga, pepino y zanahoria rallada.',
+            'Quinoa (60g).',
+            'Yogur natural desnatado sin lactosa.'
+          ],
+          snack: 'Un puñado de almendras (si toleras y lo necesitas).',
+          dinner: [
+            'Merluza a la plancha (220g).',
+            'Calabacín y pimiento verde a la plancha (mínimo AOVE).',
+            'Gelatina sin azúcar.'
+          ]
+        },
+      ];
+
+      // --- SHOPPING LIST DATA ---
+      const shoppingList = {
+        'Lácteos y Alternativas': [
+          'Leche desnatada sin lactosa',
+          'Yogures desnatados sin lactosa (naturales, sin azúcares añadidos)',
+          'Queso fresco desnatado sin lactosa',
+          'Bebida vegetal de almendras o arroz (sin azúcares añadidos, sin inulina/goma guar/otras gomas)'
+        ],
+        'Proteínas (Prioridad Magra y Baja en Purinas)': [
+          'Pechuga de pollo',
+          'Muslos de pollo sin piel',
+          'Pechuga de pavo',
+          'Lomo de cerdo (corte magro)',
+          'Cordero (cortes muy magros, moderar consumo)',
+          'Carne de ternera magra para asar (moderar a 1-2 veces/semana)',
+          'Merluza',
+          'Trucha',
+          'Lubina',
+          'Bacalao',
+          'Lenguado o Platija',
+          'Sepia o Pota',
+          'Atún al natural (en lata, escurrir bien)',
+          'Huevos',
+          'Jamón serrano (en porciones moderadas)',
+          'Jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares añadidos)'
+        ],
+        'Verduras (Estrictamente Bajas en FODMAP - ¡Solo estas!)': [
+          'Espinacas',
+          'Lechuga (todas las variedades)',
+          'Pepino',
+          'Zanahorias',
+          'Calabacín',
+          'Pimiento rojo (porción controlada)',
+          'Tomates (preferiblemente cherry o sin semillas si eres sensible)',
+          'Acelgas',
+          'Endivias',
+          'Judías verdes (en porciones controladas, aprox. 75g)',
+          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)'
+        ],
+        'Frutas (Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
+          'Arándanos (máx. 1/4 taza)',
+          'Fresas (máx. 5-6 pequeñas)',
+          'Kiwi (1 unidad)',
+          'Naranjas pequeñas (1 unidad)',
+          'Mandarinas pequeñas (1 unidad)',
+          'Plátanos verdes/poco maduros (1/2 unidad, no maduros)'
+        ],
+        'Cereales y Tubérculos (Sin Gluten, Sin Azúcares Añadidos)': [
+          'Pan sin gluten (de arroz o maíz puro, verificar ingredientes)',
+          'Pasta sin gluten (de arroz o maíz)',
+          'Copos de arroz inflado o maíz sin azúcar (verificar ingredientes)',
+          'Quinoa',
+          'Arroz blanco',
+          'Patatas (para hervir/asar, sin recalentar)',
+          'Boniato (porción controlada)',
+          'Tortitas de maíz/arroz (verificar sin azúcares añadidos ni fructosa)',
+          'Fideos de arroz o maíz (para sopas)'
+        ],
+        'Grasas y Aceites': [
+          'Aceite de oliva virgen extra (cantidad controlada)',
+          'Almendras (máx. 10-12 unidades)',
+          'Nueces de macadamia (puñado pequeño)',
+          'Semillas de chía',
+          'Semillas de lino molidas'
+        ],
+        'Varios y Especias': [
+          'Gelatina sin azúcar (verificar edulcorantes compatibles)',
+          'Hierbas frescas (perejil, cilantro, romero, tomillo, albahaca, eneldo)',
+          'Especias (sal, pimienta, pimentón dulce, comino, cúrcuma, jengibre en polvo)',
+          'Caldo de verduras o pollo casero (hecho con huesos, zanahoria, tallo de apio, sin cebolla, sin ajo, sin puerro)',
+          'Tomate triturado natural (verificar sin cebolla/ajo)',
+          'Edulcorantes (estevia, sacarina, aspartamo, si los toleras)'
+        ],
+        'Suplementos (¡Consulta a tu médico/nutricionista para ajuste de dosis y nuevos!)': [
+          'Probiótico Ironmax',
+          'Perlas de Orégano',
+          'Magnesio (Citrato de Magnesio Terra Verda)',
+          'Savia de Paleobull (Creatina, Magnesio, Potasio) - ¡RECUERDA SUMAR EL MAGNESIO DE AMBOS SUPLEMENTOS!',
+          'Elixir de Paleobull (Colágeno + Aceite TCM)',
+          'Considerar seriamente con tu médico: Suplemento de Vitamina D3 + K2 (dada tu deficiencia de Vitamina D)',
+          'Considerar seriamente con tu médico: Suplemento de Vitamina B12 (dada tu B12 en límite inferior)',
+          'Considerar seriamente con tu médico: Suplemento de Vitamina C (dada tu deficiencia)',
+          'Considerar seriamente con tu médico: Suplemento de Omega 3 (para colesterol, inflamación y salud general)'
+        ]
+      };
+
+      // --- INFO DATA ---
+      const infoContent = {
+        sibo: {
+          title: '¿Qué es el SIBO?',
+          text: 'El SIBO (Sobrecrecimiento Bacteriano del Intestino Delgado) es una condición donde hay un aumento excesivo de bacterias en el intestino delgado. Normalmente, la mayoría de las bacterias residen en el intestino grueso. Tu prueba de SIBO fue positiva, con un componente significativo de Metano (IMO), lo que puede asociarse con estreñimiento y hacer el tratamiento más complejo.'
+        },
+        fructose: {
+          title: 'Malabsorción de Fructosa',
+          text: 'Tu prueba de intolerancia a la fructosa confirmó una malabsorción elevada. Esto significa que tu intestino delgado tiene una capacidad muy limitada para absorber la fructosa, un tipo de azúcar presente en muchas frutas, miel y jarabes. La fructosa no absorbida fermenta en el intestino, causando síntomas y alimentando el SIBO.'
+        },
+        lactose: {
+          title: 'Malabsorción de Lactosa',
+          text: 'Tu prueba de intolerancia a la lactosa también confirmó una malabsorción elevada. Esto indica que tu cuerpo produce poca o ninguna lactasa, la enzima necesaria para digerir la lactosa (el azúcar de la leche). La lactosa no digerida fermenta en el intestino, provocando gases, hinchazón y malestar.'
+        },
+        dietPurpose: {
+          title: 'Propósito de esta Dieta',
+          text: 'Esta dieta es una Fase de Eliminación Rigurosa de FODMAPs, diseñada para reducir la fermentación bacteriana en tu intestino, aliviar tus síntomas y preparar tu cuerpo para un tratamiento más efectivo del SIBO. También está ajustada para ser baja en grasas saturadas, apoyar tus niveles de colesterol y triglicéridos, y considerar tu función renal. Es crucial seguirla estrictamente y no es una dieta para mantener a largo plazo sin reintroducción.'
+        },
+        importantNotes: {
+          title: 'Notas Importantes Adicionales',
+          text: '1. **Consulta Profesional:** Esta app es una guía. Es fundamental que un gastroenterólogo y un dietista-nutricionista especializado en SIBO revisen tu caso y ajusten el plan. 2. **Causa Subyacente del SIBO:** La dieta y los suplementos ayudan, pero es VITAL que tu médico investigue y trate la causa raíz de tu SIBO (ej. problemas de motilidad intestinal) para evitar recaídas. 3. **Suplementos:** Revisa las dosis de magnesio que tomas de ambos suplementos. Discute con tu médico la suplementación de Vitamina D3+K2, B12 y Omega 3, ya que tus análisis muestran deficiencias o niveles bajos.'
+        }
+      };
+
+      // Main App Component
+      function App() {
+        const [activeTab, setActiveTab] = React.useState('diet'); // 'diet', 'shopping', 'info'
+        const [currentDayIndex, setCurrentDayIndex] = React.useState(0); // 0 for Lunes, 1 for Martes, etc.
+
+        const currentDay = dietPlan[currentDayIndex];
+
+        return (
+          <div className="min-h-screen bg-gray-900 font-sans antialiased flex flex-col items-center p-4 sm:p-6">
+            {/* Header */}
+            <header className="w-full max-w-4xl bg-gradient-to-r from-gray-800 to-gray-950 text-white p-6 rounded-lg shadow-lg mb-8 text-center">
+              <h1 className="text-3xl sm:text-4xl font-bold mb-2">Tu Guía SIBO y Dieta Personalizada</h1>
+              <p className="text-lg sm:text-xl">Manejo de SIBO, Intolerancia a Fructosa y Lactosa</p>
+            </header>
+
+            {/* Navigation Tabs */}
+            <nav className="w-full max-w-4xl bg-gray-800 p-3 rounded-lg shadow-md flex justify-around mb-6">
+              <button
+                onClick={() => setActiveTab('diet')}
+                className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
+                  activeTab === 'diet' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                Dieta Semanal
+              </button>
+              <button
+                onClick={() => setActiveTab('shopping')}
+                className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
+                  activeTab === 'shopping' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                Lista de la Compra
+              </button>
+              <button
+                onClick={() => setActiveTab('info')}
+                className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
+                  activeTab === 'info' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                Información Clave
+              </button>
+            </nav>
+
+            {/* Content Area */}
+            <main className="w-full max-w-4xl bg-gray-800 p-6 rounded-lg shadow-lg">
+              {activeTab === 'diet' && (
+                <div className="diet-plan-section">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Dieta Semanal</h2>
+                  <div className="flex justify-between items-center mb-4">
+                    <button
+                      onClick={() => setCurrentDayIndex((prev) => (prev === 0 ? dietPlan.length - 1 : prev - 1))}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 shadow-sm"
+                    >
+                      Anterior
+                    </button>
+                    <h3 className="text-xl sm:text-2xl font-semibold text-blue-400">{currentDay.day}</h3>
+                    <button
+                      onClick={() => setCurrentDayIndex((prev) => (prev === dietPlan.length - 1 ? 0 : prev + 1))}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 shadow-sm"
+                    >
+                      Siguiente
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h4 className="font-bold text-lg text-blue-300">Desayuno:</h4>
+                      <ul className="list-disc list-inside text-gray-200">
+                        {currentDay.breakfast.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h4 className="font-bold text-lg text-green-300">Almuerzo (Media Mañana):</h4>
+                      <p className="text-gray-200">{currentDay.midMorning}</p>
+                    </div>
+                    {/* New section for snacks between meals */}
+                    {currentDay.snacksBetweenMeals && currentDay.snacksBetweenMeals.length > 0 && (
+                      <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                        <h4 className="font-bold text-lg text-orange-300">Entre Comidas:</h4>
+                        <ul className="list-disc list-inside text-gray-200">
+                          {currentDay.snacksBetweenMeals.map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h4 className="font-bold text-lg text-yellow-300">Comida:</h4>
+                      <ul className="list-disc list-inside text-gray-200">
+                        {currentDay.lunch.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h4 className="font-bold text-lg text-purple-300">Merienda:</h4>
+                      <p className="text-gray-200">{currentDay.snack}</p>
+                    </div>
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h4 className="font-bold text-lg text-red-300">Cena:</h4>
+                      <ul className="list-disc list-inside text-gray-200">
+                        {currentDay.dinner.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'shopping' && (
+                <div className="shopping-list-section">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Lista de la Compra</h2>
+                  <div className="space-y-6">
+                    {Object.entries(shoppingList).map(([category, items]) => (
+                      <div key={category} className="bg-gray-700 p-4 rounded-md shadow-sm">
+                        <h3 className="font-bold text-xl text-blue-400 mb-2">{category}</h3>
+                        <ul className="list-disc list-inside text-gray-200 space-y-1">
+                          {items.map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'info' && (
+                <div className="info-section space-y-6">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Información Clave</h2>
+                  {Object.entries(infoContent).map(([key, content]) => (
+                    <div key={key} className="bg-gray-700 p-4 rounded-md shadow-sm">
+                      <h3 className="font-bold text-xl text-blue-300 mb-2">{content.title}</h3>
+                      <p className="text-gray-200">{content.text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </main>
+
+            {/* Footer */}
+            <footer className="w-full max-w-4xl mt-8 p-4 text-center text-gray-400 text-sm">
+              <p>Tu Guía SIBO - Creada para Marcelo Facundo Arguello Nogueira.</p>
+              <p>Recuerda siempre consultar a un profesional de la salud.</p>
+            </footer>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
