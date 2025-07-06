@@ -11,12 +11,9 @@
     />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>Guía SIBO y Dieta Personalizada</title>
+    <title>Tu Guía SIBO y Dieta Personalizada</title>
 
-    <!-- Tailwind CSS CDN - ESTO HACE EL DISEÑO -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fin Tailwind CSS CDN -->
-
     <style>
       /* Asegura que el body use el 100% del alto disponible */
       html, body, #root {
@@ -44,7 +41,7 @@
             '1/2 taza de arándanos frescos.',
             'Opcional: Tu batido de proteína Paleobull Savia y Elixir Colágeno + TCM aquí.'
           ],
-          midMorning: '1 kiwi.', // CAMBIO: Naranja por Kiwi
+          midMorning: '1 kiwi.', 
           snacksBetweenMeals: [
             '1 huevo cocido.',
             'Palitos de zanahoria.'
@@ -245,12 +242,14 @@
           'Arándanos (máx. 1/4 taza)',
           'Fresas (máx. 5-6 pequeñas)',
           'Kiwi (1 unidad)',
-          'Plátanos verdes/poco maduros (1/2 unidad, no maduros)'
+          'Plátanos verdes/poco maduros (1/2 unidad, no maduros)',
+          'Naranjas (1 pequeña)',
+          'Mandarinas (1 pequeña)'
         ],
         'Cereales y Tubérculos (Sin Gluten, Sin Azúcares Añadidos)': [
           'Pan sin gluten (de arroz o maíz puro, verificar ingredientes)',
           'Pasta sin gluten (de arroz o maíz)',
-          'Copos de arroz inflado o maíz sin azúcar (verificar ingredientes)',
+          'Copos de avena certificados sin azúcar (verificar ingredientes)',
           'Quinoa',
           'Arroz blanco',
           'Patatas (para hervir/asar, sin recalentar)',
@@ -294,11 +293,11 @@
         },
         fructose: {
           title: 'Malabsorción de Fructosa',
-          text: 'La malabsorción de fructosa, también conocida como intolerancia a la fructosa, ocurre cuando el intestino delgado no puede absorber adecuadamente este azúcar, lo que provoca problemas digestivos. Los síntomas comunes incluyen dolor abdominal, hinchazón, gases y diarrea. Esta condición no debe confundirse con la intolerancia hereditaria a la fructosa, que es una enfermedad más grave. La fructosa es un azúcar presente de forma natural en frutas, miel y algunos vegetales, así como en productos procesados como dulces y bebidas. En la malabsorción de fructosa, el intestino delgado no puede absorber completamente la fructosa, y esta pasa al colon donde las bacterias la fermentan, generando gases y otros síntomas.  '
+          text: 'La malabsorción de fructosa, también conocida como intolerancia a la fructosa, ocurre cuando el intestino delgado no puede absorber adecuadamente este azúcar, lo que provoca problemas digestivos. Los síntomas comunes incluyen dolor abdominal, hinchazón, gases y diarrea. Esta condición no debe confundirse con la intolerancia hereditaria a la fructosa, que es una enfermedad más grave. La fructosa es un azúcar presente de forma natural en frutas, miel y algunos vegetales, así como en productos procesados como dulces y bebidas. En la malabsorción de fructosa, el intestino delgado no puede absorber completamente la fructosa, y esta pasa al colon donde las bacterias la fermentan, generando gases y otros síntomas. Tu prueba de fructosa fue positiva con una elevación muy significativa de hidrógeno y metano.'
         },
         lactose: {
           title: 'Malabsorción de Lactosa',
-          text: 'La malabsorción de lactosa, también llamada intolerancia a la lactosa, ocurre cuando el intestino delgado no puede digerir la lactosa, un azúcar presente en la leche y productos lácteos, debido a la falta de la enzima lactasa. Esto provoca que la lactosa no absorbida llegue al colon, donde es fermentada por bacterias, generando síntomas como gases, hinchazón abdominal y diarrea. La intolerancia a la lactosa es causada por la malabsorción de lactosa. Si una persona tiene malabsorción de lactosa, su intestino delgado produce concentraciones bajas de lactasa, la enzima que descompone la lactosa, y no puede digerir toda la lactosa que come o bebe. La lactosa que no se digiere pasa al colon. .'
+          text: 'La malabsorción de lactosa, también llamada intolerancia a la lactosa, ocurre cuando el intestino delgado no puede digerir la lactosa, un azúcar presente en la leche y productos lácteos, debido a la falta de la enzima lactasa. Esto provoca que la lactosa no absorbida llegue al colon, donde es fermentada por bacterias, generando síntomas como gases, hinchazón abdominal y diarrea. Tu prueba de lactosa fue positiva con elevaciones importantes de hidrógeno y metano.'
         },
         dietPurpose: {
           title: 'Propósito de esta Dieta',
@@ -306,55 +305,128 @@
         },
         importantNotes: {
           title: 'Notas Importantes Adicionales',
-          text: '1. **Consulta Profesional:** Esta app es una guía. Es fundamental que un gastroenterólogo y un dietista-nutricionista especializado en SIBO revisen tu caso y ajusten el plan. 2. **Causa Subyacente del SIBO:** La dieta y los suplementos ayudan, pero es VITAL que tu médico investigue y trate la causa raíz de tu SIBO (ej. problemas de motilidad intestinal) para evitar recaídas. 3. **Suplementos:** Revisa las dosis de magnesio que tomas de ambos suplementos. Discute con tu médico la suplementación de Vitamina D3+K2, B12 y Omega 3, ya que tus análisis muestran deficiencias o niveles bajos.'
+          text: '1. **Consulta Profesional:** Esta app es una guía. Es fundamental que un gastroenterólogo y un dietista-nutricionista especializado en SIBO revisen tu caso y ajusten el plan. 2. **Causa Subyacente del SIBO:** La dieta y los suplementos ayudan, pero es VITAL que tu médico investigue y trate la causa raíz de tu SIBO (ej. problemas de motilidad intestinal) para evitar recaídas. 3. **Suplementos:** Revisa las dosis de magnesio que tomas de ambos suplementos. Discute con tu médico la suplementación de Vitamina D3+K2, B12 y Omega 3, ya que tus análisis muestran deficiencias o niveles bajos. 4. **Pérdida de Peso:** El SIBO no resuelto puede dificultar la pérdida de peso. Abordar el SIBO es clave para normalizar tu metabolismo y facilitar el control del peso.'
         }
       };
 
       // Main App Component
       function App() {
-        const [activeTab, setActiveTab] = React.useState('diet'); // 'diet', 'shopping', 'info'
-        const [currentDayIndex, setCurrentDayIndex] = React.useState(0); // 0 for Lunes, 1 for Martes, etc.
-        const [recipeIngredients, setRecipeIngredients] = React.useState('');
-        const [generatedRecipe, setGeneratedRecipe] = React.useState('');
-        const [isGenerating, setIsGenerating] = React.useState(false);
+        const [activeTab, setActiveTab] = React.useState('diet');
+        const [currentDayIndex, setCurrentDayIndex] = React.useState(0);
 
-        const currentDay = dietPlan[currentDayIndex];
+        // Estados para el Diario de Síntomas
+        const [selectedDate, setSelectedDate] = React.useState(new Date().toISOString().slice(0, 10));
+        const [mealsEaten, setMealsEaten] = React.useState('');
+        const [symptomNotes, setSymptomNotes] = React.useState('');
+        const [selectedSymptoms, setSelectedSymptoms] = React.useState({});
+        const [logMessage, setLogMessage] = React.useState('');
+        const [symptomLogs, setSymptomLogs] = React.useState([]);
+        const [viewingLog, setViewingLog] = React.useState(null);
 
-        const generateRecipe = async () => {
-          setIsGenerating(true);
-          setGeneratedRecipe('Generando receta...');
+        // Nuevos estados para controlar la expansión de los grupos
+        const [expandedYears, setExpandedYears] = React.useState({}); 
+        const [expandedMonths, setExpandedMonths] = React.useState({}); 
+        const [expandedWeeks, setExpandedWeeks] = React.useState({}); 
 
-          const prompt = `Genera una receta sencilla y apta para dieta FODMAP, sin lactosa y sin fructosa, usando estos ingredientes: ${recipeIngredients}. La receta debe ser clara, con pasos concisos y un nombre. Asegúrate de que todos los ingredientes sean compatibles con SIBO y las intolerancias mencionadas.`;
 
-          let chatHistory = [];
-          chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-          const payload = { contents: chatHistory };
-          const apiKey = ""; // Leave this as-is. Canvas will provide it.
-          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const commonSymptoms = [
+          'Hinchazón', 'Gases', 'Dolor abdominal', 'Diarrea', 'Estreñimiento',
+          'Náuseas', 'Reflujo', 'Fatiga', 'Cefalea', 'Niebla mental'
+        ];
 
-          try {
-            const response = await fetch(apiUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-              const text = result.candidates[0].content.parts[0].text;
-              setGeneratedRecipe(text);
-            } else {
-              setGeneratedRecipe('No se pudo generar la receta. Intenta con otros ingredientes.');
-            }
-          } catch (error) {
-            console.error('Error al llamar a la API de Gemini:', error);
-            setGeneratedRecipe('Error al generar la receta. Asegúrate de tener conexión a internet.');
-          } finally {
-            setIsGenerating(false);
-          }
+        // Función auxiliar para obtener el número de semana del año (ISO 8601)
+        const getWeekNumber = (d) => {
+          d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+          d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7)); // Set to nearest Thursday: current date + 4 - current day number (make Sunday's day number 7)
+          var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+          var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+          return weekNo;
         };
 
+        // Cargar registros del localStorage al inicio
+        React.useEffect(() => {
+          const storedLogs = localStorage.getItem('siboSymptomLogs');
+          if (storedLogs) {
+            const parsedLogs = JSON.parse(storedLogs).map(log => ({
+                ...log,
+                date: new Date(log.date), // Convertir a objeto Date
+                timestamp: new Date(log.timestamp) 
+            }));
+            parsedLogs.sort((a, b) => b.timestamp - a.timestamp); // Ordenar por timestamp descendente
+            setSymptomLogs(parsedLogs);
+          }
+        }, []);
+
+        // Función para guardar el registro
+        const saveSymptomLog = () => {
+          if (!mealsEaten.trim() && Object.keys(selectedSymptoms).length === 0 && !symptomNotes.trim()) {
+            setLogMessage('Por favor, ingresa al menos las comidas, un síntoma o una nota.');
+            return;
+          }
+
+          const newLog = {
+            date: new Date(selectedDate),
+            meals: mealsEaten,
+            symptoms: selectedSymptoms,
+            notes: symptomNotes,
+            timestamp: new Date()
+          };
+
+          const updatedLogs = [...symptomLogs, newLog];
+          updatedLogs.sort((a, b) => b.timestamp - a.timestamp); 
+          localStorage.setItem('siboSymptomLogs', JSON.stringify(updatedLogs)); 
+          setSymptomLogs(updatedLogs);
+          setLogMessage('¡Registro guardado con éxito!');
+
+          // Limpiar el formulario después de guardar
+          setSelectedDate(new Date().toISOString().slice(0, 10));
+          setMealsEaten('');
+          setSymptomNotes('');
+          setSelectedSymptoms({});
+          setLogMessage(''); // Limpiar el mensaje de log
+        };
+
+        // Funciones para alternar la expansión
+        const toggleYear = (year) => {
+          setExpandedYears(prev => ({ ...prev, [year]: !prev[year] }));
+        };
+        const toggleMonth = (year, month) => {
+          setExpandedMonths(prev => ({ ...prev, [`${year}-${month}`]: !prev[`${year}-${month}`] }));
+        };
+        const toggleWeek = (year, week) => {
+          setExpandedWeeks(prev => ({ ...prev, [`${year}-${week}`]: !prev[`${year}-${week}`] }));
+        };
+
+
+        // Función para agrupar los registros por Año, Mes y Semana
+        const groupLogs = (logs) => {
+          const grouped = {}; 
+
+          logs.forEach(log => {
+            const date = log.date; 
+            const year = date.getFullYear();
+            const month = date.toLocaleString('es-ES', { month: 'long' }); 
+            const week = getWeekNumber(date);
+
+            if (!grouped[year]) grouped[year] = {};
+            if (!grouped[year][month]) grouped[year][month] = {};
+            if (!grouped[year][month][week]) grouped[year][month][week] = [];
+
+            grouped[year][month][week].push(log);
+          });
+          return grouped;
+        };
+
+        const groupedSymptoms = groupLogs(symptomLogs);
+
+        // Eliminamos los estados y la función relacionada con el generador de recetas
+        // const [recipeIngredients, setRecipeIngredients] = React.useState('');
+        // const [generatedRecipe, setGeneratedRecipe] = React.useState('');
+        // const [isGenerating, setIsGenerating] = React.useState(false);
+        // const generateRecipe = async () => { /* ... */ };
+
+
+        const currentDay = dietPlan[currentDayIndex];
 
         return (
           <div className="min-h-screen bg-gray-900 font-sans antialiased flex flex-col items-center p-4 sm:p-6">
@@ -391,13 +463,22 @@
                 Información Clave
               </button>
               <button
+                onClick={() => setActiveTab('symptoms')}
+                className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
+                  activeTab === 'symptoms' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                Diario de Síntomas
+              </button>
+              {/* Eliminada la pestaña de Recetas */}
+              {/* <button
                 onClick={() => setActiveTab('recipes')}
                 className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
                   activeTab === 'recipes' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
                 }`}
               >
                 Recetas ✨
-              </button>
+              </button> */}
             </nav>
 
             {/* Content Area */}
@@ -434,7 +515,6 @@
                       <h4 className="font-bold text-lg text-green-300">Almuerzo (Media Mañana):</h4>
                       <p className="text-gray-200">{currentDay.midMorning}</p>
                     </div>
-                    {/* New section for snacks between meals */}
                     {currentDay.snacksBetweenMeals && currentDay.snacksBetweenMeals.length > 0 && (
                       <div className="bg-gray-700 p-4 rounded-md shadow-sm">
                         <h4 className="font-bold text-lg text-orange-300">Entre Comidas:</h4>
@@ -499,7 +579,201 @@
                 </div>
               )}
 
-              {activeTab === 'recipes' && (
+              {activeTab === 'symptoms' && (
+                <div className="symptoms-diary-section space-y-6">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Diario de Síntomas</h2>
+                  
+                  {viewingLog ? ( // Si hay un registro seleccionado, mostrar detalles
+                    <div className="bg-gray-700 p-4 rounded-md shadow-sm space-y-4">
+                      <button 
+                        onClick={() => setViewingLog(null)} 
+                        className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 mb-4"
+                      >
+                        ← Volver a la lista
+                      </button>
+                      <h3 className="text-xl font-bold text-blue-400 mb-2">Detalle del Registro del {new Date(viewingLog.date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
+                      
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-300">Comidas y Reacciones:</h4>
+                        <p className="text-gray-200 whitespace-pre-wrap">{viewingLog.meals}</p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-300">Síntomas Reportados:</h4>
+                        <ul className="list-disc list-inside text-gray-200">
+                          {Object.keys(viewingLog.symptoms).length > 0 ? (
+                            Object.entries(viewingLog.symptoms).map(([symptom, severity]) => (
+                              <li key={symptom}>{symptom}: {severity}</li>
+                            ))
+                          ) : (
+                            <li>Ningún síntoma específico reportado.</li>
+                          )}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-300">Notas Adicionales:</h4>
+                        <p className="text-gray-200 whitespace-pre-wrap">{viewingLog.notes || 'Ninguna nota adicional.'}</p>
+                      </div>
+                    </div>
+                  ) : ( // Si no hay registro seleccionado, mostrar el formulario y la lista
+                    <>
+                      <div className="bg-gray-700 p-4 rounded-md shadow-sm space-y-4">
+                        <p className="text-gray-200 mb-2">
+                          Registra tus comidas y síntomas diarios para identificar patrones.
+                        </p>
+
+                        {/* Selector de Fecha */}
+                        <div>
+                          <label htmlFor="logDate" className="block text-gray-300 text-sm font-bold mb-1">Fecha:</label>
+                          <input
+                            type="date"
+                            id="logDate"
+                            className="w-full p-2 rounded-md bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={selectedDate}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                          />
+                        </div>
+
+                        {/* Registro de Comidas y Reacción */}
+                        <div>
+                          <label htmlFor="meals" className="block text-gray-300 text-sm font-bold mb-1">
+                            ¿Qué comiste hoy y cómo te sentó? (Desayuno, Almuerzo, Comida, Merienda, Cena, Snacks)
+                          </label>
+                          <textarea
+                            id="meals"
+                            className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            rows="6"
+                            placeholder="Ej: Desayuno: Avena con leche almendras (Bien). Comida: Pollo con espinacas (Bien). Cena: Merluza con patata (Mal, me dio gases)."
+                            value={mealsEaten}
+                            onChange={(e) => setMealsEaten(e.target.value)}
+                          ></textarea>
+                        </div>
+
+                        {/* Registro de Síntomas (Manteniendo la estructura actual) */}
+                        <div>
+                          <h4 className="font-bold text-lg text-blue-300 mb-2">Síntomas Experimentados:</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {commonSymptoms.map(symptom => (
+                              <div key={symptom} className="bg-gray-800 p-3 rounded-md flex flex-col">
+                                <span className="text-gray-200 font-medium mb-1">{symptom}:</span>
+                                <div className="flex justify-around">
+                                  {['Leve', 'Moderado', 'Severo'].map(severity => (
+                                    <button
+                                      key={severity}
+                                      onClick={() => handleSymptomChange(symptom, severity)}
+                                      className={`px-3 py-1 text-xs rounded-full transition-colors duration-200 ${
+                                        selectedSymptoms[symptom] === severity
+                                          ? 'bg-blue-600 text-white shadow-md'
+                                          : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                                      }`}
+                                    >
+                                      {severity}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Notas Adicionales (cambiado el placeholder para incluir la reacción general) */}
+                        <div>
+                          <label htmlFor="notes" className="block text-gray-300 text-sm font-bold mb-1">Notas Adicionales del día (ej. estrés, ejercicio, medicación, reacción general):</label>
+                          <textarea
+                            id="notes"
+                            className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            rows="3"
+                            placeholder="Ej: Hoy me sentí bastante bien en general. El estrés fue moderado. No tomé medicación extra."
+                            value={symptomNotes}
+                            onChange={(e) => setSymptomNotes(e.target.value)}
+                          ></textarea>
+                        </div>
+
+                        {/* Botón Guardar */}
+                        <button
+                          onClick={saveSymptomLog}
+                          className="w-full px-4 py-2 rounded-md font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors duration-200 shadow-md"
+                        >
+                          Guardar Registro
+                        </button>
+                        {logMessage && (
+                          <p className="text-center text-sm text-green-400 mt-2">{logMessage}</p>
+                        )}
+                      </div>
+
+                      {/* Historial de Registros Agrupado y Desplegable */}
+                      <div className="mt-8">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 text-center">Historial de Registros</h3>
+                        {symptomLogs.length === 0 ? (
+                          <p className="text-gray-400 text-center">No hay registros guardados aún. ¡Empieza a añadir!</p>
+                        ) : (
+                          Object.entries(groupedSymptoms).sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)).map(([year, months]) => (
+                            <div key={year} className="mb-6 bg-gray-700 p-3 rounded-md shadow-sm">
+                              <h4 
+                                className="text-xl font-bold text-purple-400 mb-2 cursor-pointer flex justify-between items-center"
+                                onClick={() => toggleYear(year)}
+                              >
+                                {year} {expandedYears[year] ? '▼' : '▶'}
+                              </h4>
+                              {expandedYears[year] && (
+                                <div className="ml-4">
+                                  {Object.entries(months).sort(([monthNameA], [monthNameB]) => {
+                                    const monthOrder = ["diciembre", "noviembre", "octubre", "septiembre", "agosto", "julio", "junio", "mayo", "abril", "marzo", "febrero", "enero"]; // Orden descendente
+                                    return monthOrder.indexOf(monthNameA) - monthOrder.indexOf(monthNameB);
+                                  }).map(([month, weeks]) => (
+                                    <div key={month} className="mb-4">
+                                      <h5 
+                                        className="text-lg font-bold text-green-400 mb-2 cursor-pointer flex justify-between items-center"
+                                        onClick={() => toggleMonth(year, month)}
+                                      >
+                                        {month.charAt(0).toUpperCase() + month.slice(1)} {expandedMonths[`${year}-${month}`] ? '▼' : '▶'}
+                                      </h5>
+                                      {expandedMonths[`${year}-${month}`] && (
+                                        <div className="ml-4">
+                                          {Object.entries(weeks).sort(([weekA], [weekB]) => parseInt(weekB) - parseInt(weekA)).map(([week, logsInWeek]) => (
+                                            <div key={week} className="mb-3">
+                                              <h6 
+                                                className="text-base font-semibold text-orange-300 mb-2 cursor-pointer flex justify-between items-center"
+                                                onClick={() => toggleWeek(year, week)}
+                                              >
+                                                Semana {week} {expandedWeeks[`${year}-${week}`] ? '▼' : '▶'}
+                                              </h6>
+                                              {expandedWeeks[`${year}-${week}`] && (
+                                                <div className="space-y-2">
+                                                  {logsInWeek.map((log) => (
+                                                    <div 
+                                                      key={log.timestamp} 
+                                                      className="bg-gray-800 p-3 rounded-md shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+                                                      onClick={() => setViewingLog(log)}
+                                                    >
+                                                      <span className="text-gray-200 font-medium">
+                                                        {log.date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                                                      </span>
+                                                      <span className="text-blue-300">Ver Detalles →</span>
+                                                    </div>
+                                                  ))}
+                                                </div>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+
+              {/* Eliminada la sección del generador de recetas */}
+              {/* {activeTab === 'recipes' && (
                 <div className="recipe-generator-section space-y-6">
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Generador de Recetas ✨</h2>
                   <div className="bg-gray-700 p-4 rounded-md shadow-sm space-y-4">
@@ -530,7 +804,7 @@
                     )}
                   </div>
                 </div>
-              )}
+              )} */}
             </main>
 
             {/* Footer */}
