@@ -21,18 +21,6 @@
         margin: 0;
         padding: 0;
       }
-      /* Los estilos para los círculos de intensidad ya no son necesarios sin la sección de síntomas */
-      /* .severity-circle {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        border: 2px solid theme('colors.gray.500');
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-      }
-      .severity-circle.selected-1 { background-color: theme('colors.green.500'); border-color: theme('colors.green.600'); }
-      .severity-circle.selected-2 { background-color: theme('colors.yellow.500'); border-color: theme('colors.yellow.600'); }
-      .severity-circle.selected-3 { background-color: theme('colors.red.500'); border-color: theme('colors.red.600'); } */
     </style>
   </head>
   <body>
@@ -67,8 +55,8 @@
           snack: '1 plátano pequeño (poco maduro).',
           dinner: [
             'Merluza al horno (220g).',
-            'Patatas hervidas (150g) y judías verdes al vapor (aprox. 75g).',
-            'Gelatina sin azúcar.'
+            'Judías verdes al vapor (aprox. 75g, muy bajo en carbos).',
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
@@ -79,24 +67,24 @@
           ],
           midMorning: '1 kiwi.',
           snacksBetweenMeals: [
-            '2-3 tortitas de maíz/arroz con 1-2 lonchas de jamón cocido (verificar sin lactosa/dextrosa/azúcares).'
+            '2-3 lonchas de jamón cocido (verificar sin lactosa/dextrosa/azúcares/FODMAPs).'
           ],
           lunch: [
-            'Pasta de arroz o maíz (80g, sin gluten) con atún al natural (escurrido al máximo).',
+            'Atún al natural (bien escurrido).',
             'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Tortitas de maíz (2-3 unidades) con queso fresco desnatado sin lactosa.',
+          snack: '1 huevo cocido.',
           dinner: [
             'Crema de calabacín y zanahoria (hecha con caldo de pollo casero, mínimo AOVE, sin cebolla/ajo).',
             'Pechuga de pavo a la plancha (180g, sin piel).',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
           day: 'Miércoles',
           breakfast: [
-            'Yogur natural desnatado sin lactosa con 1/2 taza de fresas y 1 cucharada de semillas de chía.',
+            'Yogur natural desnatado sin lactosa con 1 cucharada de semillas de chía.',
             'Infusión de menta.'
           ],
           midMorning: '10-12 almendras (si las toleras, porción controlada).',
@@ -106,107 +94,99 @@
           lunch: [
             'Lomo de cerdo magro a la plancha (180g, retirar grasa visible).',
             'Ensalada de lechuga, pepino y pimiento rojo (porción controlada).',
-            'Quinoa (60g).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: '1/2 taza de arándanos frescos.',
+          snack: 'Pechuga de pollo fría a la plancha (pequeña porción).', // CAMBIO: antes arándanos, ahora pollo
           dinner: [
             'Trucha (o lenguado/platija) a la plancha (220g).',
             'Puntas de espárragos (1/2 taza) salteadas con mínimo AOVE.',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
           day: 'Jueves',
           breakfast: [
-            'Batido: 1 plátano pequeño (poco maduro), 1 taza de leche de arroz (sin azúcar), 1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
+            'Batido: 1 taza de leche de arroz (sin azúcar), 1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
           ],
-          midMorning: '1/2 taza de arándanos frescos.',
+          midMorning: 'Rodajas de pepino.',
           snacksBetweenMeals: [
-            'Rodajas de pepino.',
             'Pechuga de pavo a la plancha fría (pequeña porción).'
           ],
           lunch: [
             'Pavo al horno sin piel (180g).',
-            'Boniato asado (200g) y acelgas hervidas.',
+            'Acelgas hervidas.',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Tortitas de maíz (2-3 unidades) con tomate natural triturado (sin cebolla/ajo).',
+          snack: 'Rodajas de pepino.', // CAMBIO: antes tortitas de maíz/tomate
           dinner: [
             'Sepia o pota a la plancha (220g).',
             'Salteado de calabacín y zanahoria (mínimo AOVE, sin ajo/cebolla).',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
           day: 'Viernes',
           breakfast: [
             'Tortilla de 2 claras de huevo con pimiento verde picado (mínimo AOVE).',
-            '1/2 taza de frambuesas.',
             'Infusión de jengibre.'
           ],
           midMorning: '10-12 nueces de macadamia (controlar porción por la grasa).',
           snacksBetweenMeals: [
-            '1/2 plátano verde/poco maduro.',
-            'Caldo de pollo casero (sin FODMAPs).'
+            'Caldo de pollo casero (sin FODMAPs).' // CAMBIO: antes plátano
           ],
           lunch: [
-            'Arroz blanco (60g) con pechuga de pollo desmenuzada (180g).',
-            'Cubos de calabaza asada (100g).',
+            'Pechuga de pollo desmenuzada (180g).',
+            // 'Cubos de calabaza asada (100g).', ELIMINADO
             'Yogur natural desnatado sin lactosa.'
           ],
           snack: 'Yogur natural desnatado sin lactosa con una pizca de canela.',
           dinner: [
             'Ensalada grande de pollo a la plancha (150g) con lechuga romana, pepino, rabanitos y tomate cherry.',
             'Aderezo: AOVE (controlando cantidad), vinagre de manzana y sal.',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
           day: 'Sábado',
           breakfast: [
-            'Leche de almendras (sin azúcar) con copos de avena certificados sin gluten (40g) cocidos con agua.',
-            '1 kiwi.'
+            'Leche de almendras (sin azúcar) con 1 cucharada de semillas de chía.', // CAMBIO: antes avena/kiwi
           ],
-          midMorning: '1/2 plátano pequeño (poco maduro).',
+          midMorning: '1 huevo cocido.', // CAMBIO: antes plátano
           snacksBetweenMeals: [
-            '1 huevo cocido.',
             'Hojas de lechuga.'
           ],
           lunch: [
             'Bacalao al vapor (220g).',
-            'Patata asada (150g) y judías verdes al vapor (aprox. 75g).',
+            'Judías verdes al vapor (aprox. 75g).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Tortitas de maíz (2-3 unidades) con una pizca de orégano.',
+          snack: 'Queso fresco desnatado sin lactosa (pequeña porción).', // CAMBIO: antes tortitas
           dinner: [
-            'Crema de verduras bajas en FODMAP (calabacín, zanahoria, patata; hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).',
+            'Crema de verduras bajas en FODMAP (calabacín, zanahoria; hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).', // ELIMINADO: patata
             'Huevo cocido (2 unidades).',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
         {
           day: 'Domingo',
           breakfast: [
             'Huevos pasados por agua (2 unidades).',
-            '1 rebanada de pan de arroz tostado con un chorrito mínimo de AOVE.',
-            '1/2 taza de fresas.'
+            '1/2 taza de arándanos frescos (muy baja en carbos).', // CAMBIO: antes pan/fresas
           ],
-          midMorning: '1 plátano pequeño (poco maduro).',
+          midMorning: '10-12 almendras (si toleras y lo necesitas).', // CAMBIO: antes plátano
           snacksBetweenMeals: [
-            '2-3 tortitas de maíz/arroz con atún al natural (bien escurrido).'
+            'Pechuga de pavo a la plancha fría (pequeña porción).' // CAMBIO: antes tortitas/atún
           ],
           lunch: [
             'Asado de ternera magra (sin grasa visible, 180g).',
             'Ensalada de lechuga, pepino y zanahoria rallada.',
-            'Quinoa (60g).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Un puñado de almendras (si toleras y lo necesitas).',
+          snack: 'Rodajas de pepino.', // CAMBIO: antes almendras
           dinner: [
             'Merluza a la plancha (220g).',
             'Calabacín y pimiento verde a la plancha (mínimo AOVE).',
-            'Gelatina sin azúcar.'
+            // 'Gelatina sin azúcar.' ELIMINADO
           ]
         },
       ];
@@ -248,17 +228,23 @@
           'Acelgas',
           'Endivias',
           'Judías verdes (en porciones controladas, aprox. 75g)',
-          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)'
+          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)',
+          // Las siguientes se eliminan del plan diario de comidas para ser muy bajo en carbos, pero se mantienen en la lista de la compra si hubiera alguna flexbilidad o para otras personas
+          // 'Patatas (para hervir/asar, sin recalentar)', // Ya no en la dieta diaria baja en carbos
+          // 'Boniato (porción controlada)', // Ya no en la dieta diaria baja en carbos
+          // 'Calabaza (porción controlada, ej. butternut)', // Ya no en la dieta diaria baja en carbos
         ],
-        'Frutas (Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
+        'Frutas (MUY Limitadas y Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
           'Arándanos (máx. 1/4 taza)',
           'Fresas (máx. 5-6 pequeñas)',
           'Kiwi (1 unidad)',
           'Plátanos verdes/poco maduros (1/2 unidad, no maduros)',
-          'Naranjas (1 pequeña)',
-          'Mandarinas (1 pequeña)'
+          'Naranjas (1 pequeña)', // Se mantienen en la lista por si hubiera flexibilidad, pero no en el plan diario
+          'Mandarinas (1 pequeña)' // Se mantienen en la lista por si hubiera flexibilidad, pero no en el plan diario
         ],
-        'Cereales y Tubérculos (Sin Gluten, Sin Azúcares Añadidos)': [
+        // Eliminada la categoría 'Cereales y Tubérculos' por la dieta muy baja en carbos
+        // Sin embargo, si necesitas ocasionalmente algo para el desayuno, podrías reintroducir avena certificada, pero siempre consultando
+        /* 'Cereales y Tubérculos (Sin Gluten, Sin Azúcares Añadidos)': [
           'Pan sin gluten (de arroz o maíz puro, verificar ingredientes)',
           'Pasta sin gluten (de arroz o maíz)',
           'Copos de avena certificados sin azúcar (verificar ingredientes)',
@@ -268,7 +254,7 @@
           'Boniato (porción controlada)',
           'Tortitas de maíz/arroz (verificar sin azúcares añadidos ni fructosa)',
           'Fideos de arroz o maíz (para sopas)'
-        ],
+        ], */
         'Grasas y Aceites': [
           'Aceite de oliva virgen extra (cantidad controlada)',
           'Almendras (máx. 10-12 unidades)',
@@ -277,7 +263,7 @@
           'Semillas de lino molidas'
         ],
         'Varios y Especias': [
-          'Gelatina sin azúcar (verificar edulcorantes compatibles)',
+          // 'Gelatina sin azúcar (verificar edulcorantes compatibles)', ELIMINADO
           'Hierbas frescas (perejil, cilantro, romero, tomillo, albahaca, eneldo)',
           'Especias (sal, pimienta, pimentón dulce, comino, cúrcuma, jengibre en polvo)',
           'Caldo de verduras o pollo casero (hecho con huesos, zanahoria, tallo de apio, sin cebolla, sin ajo, sin puerro)',
@@ -330,9 +316,7 @@
         const [selectedDate, setSelectedDate] = React.useState(new Date().toISOString().slice(0, 10));
         const [mealsEaten, setMealsEaten] = React.useState('');
         const [symptomNotes, setSymptomNotes] = React.useState('');
-        // 'selectedSymptoms' y 'handleSymptomChange' ya no son necesarios
-        // const [selectedSymptoms, setSelectedSymptoms] = React.useState({}); 
-        // const [handleSymptomChange, setHandleSymptomChange] = React.useState(() => (symptom, severity) => {}); // Se elimina esta línea
+        const [selectedSymptoms, setSelectedSymptoms] = React.useState({});
         const [logMessage, setLogMessage] = React.useState('');
         const [symptomLogs, setSymptomLogs] = React.useState([]);
         const [viewingLog, setViewingLog] = React.useState(null);
@@ -343,10 +327,9 @@
         const [expandedWeeks, setExpandedWeeks] = React.useState({}); 
 
 
-        // commonSymptoms ya no es necesario si quitamos la sección de botones
-        // const commonSymptoms = [
-        //   'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
-        // ];
+        const commonSymptoms = [
+          'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
+        ];
 
         // Función auxiliar para obtener el número de semana del año (ISO 8601)
         const getWeekNumber = (d) => {
@@ -373,17 +356,15 @@
 
         // Función para guardar el registro
         const saveSymptomLog = () => {
-          // Simplificamos la validación al no tener selectedSymptoms
-          if (!mealsEaten.trim() && !symptomNotes.trim()) {
-            setLogMessage('Por favor, ingresa al menos las comidas o una nota.');
+          if (!mealsEaten.trim() && Object.keys(selectedSymptoms).length === 0 && !symptomNotes.trim()) {
+            setLogMessage('Por favor, ingresa al menos las comidas, un síntoma o una nota.');
             return;
           }
 
           const newLog = {
             date: new Date(selectedDate),
             meals: mealsEaten,
-            // selectedSymptoms ya no se guarda
-            // symptoms: selectedSymptoms,
+            symptoms: selectedSymptoms,
             notes: symptomNotes,
             timestamp: new Date()
           };
@@ -397,12 +378,12 @@
           setSelectedDate(new Date().toISOString().slice(0, 10));
           setMealsEaten('');
           setSymptomNotes('');
-          // setSelectedSymptoms({}); // Ya no es necesario
+          setSelectedSymptoms({});
           setLogMessage(''); 
         };
 
         // ************************************************************
-        // Función Eliminar un registro del diario
+        // NUEVA FUNCIÓN: Eliminar un registro del diario
         // ************************************************************
         const deleteSymptomLog = (logToDeleteTimestamp) => {
             if (window.confirm('¿Estás seguro de que quieres eliminar este registro?')) {
@@ -611,20 +592,6 @@
                         <p className="text-gray-200 whitespace-pre-wrap">{viewingLog.meals}</p>
                       </div>
 
-                      {/* Como ya no hay selectedSymptoms, el listado en el detalle también se simplifica */}
-                      {/* <div>
-                        <h4 className="font-bold text-lg text-gray-300">Síntomas Reportados:</h4>
-                        <ul className="list-disc list-inside text-gray-200">
-                          {Object.keys(viewingLog.symptoms).length > 0 ? (
-                            Object.entries(viewingLog.symptoms).map(([symptom, severity]) => (
-                              <li key={symptom}>{symptom}: {severity}</li>
-                            ))
-                          ) : (
-                            <li>Ningún síntoma específico reportado.</li>
-                          )}
-                        </ul>
-                      </div> */}
-
                       <div>
                         <h4 className="font-bold text-lg text-gray-300">Notas Adicionales:</h4>
                         <p className="text-gray-200 whitespace-pre-wrap">{viewingLog.notes || 'Ninguna nota adicional.'}</p>
@@ -671,10 +638,7 @@
                             onChange={(e) => setMealsEaten(e.target.value)}
                           ></textarea>
                         </div>
-
-                        {/* ELIMINADA LA SECCIÓN DE SÍNTOMAS EXPERIMENTADOS POR COMPLETO */}
-                        {/* Esto era el bloque que contenía los botones y la lógica de commonSymptoms. */}
-
+                        
                         {/* Notas Adicionales */}
                         <div>
                           <label htmlFor="notes" className="block text-gray-300 text-sm font-bold mb-1">Notas Adicionales del día (ej. estrés, ejercicio, medicación, reacción general):</label>
