@@ -21,7 +21,7 @@
         margin: 0;
         padding: 0;
       }
-      /* Estilos para los círculos de intensidad (se mantienen por si se reintroduce la funcionalidad) */
+      /* Estilos para los círculos de intensidad (aunque la sección de síntomas ya no los use directamente, el CSS se mantiene por si se reintroduce) */
       .severity-circle {
         width: 24px; /* Tamaño del círculo */
         height: 24px;
@@ -67,31 +67,27 @@
           snack: '1 plátano pequeño (poco maduro).',
           dinner: [
             'Merluza al horno (200g).',
-            'Patatas hervidas (150g).',
-            'Judías verdes al vapor (aprox. 75g).'
+            'Judías verdes al vapor (aprox. 75g, muy bajo en carbos).'
           ]
         },
         {
           day: 'Martes',
           breakfast: [
-            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).',
-            '1 rebanada de pan de arroz tostado.'
+            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).'
           ],
           midMorning: '1 plátano pequeño (poco maduro).',
           snacksBetweenMeals: [
             '2-3 lonchas de jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares/FODMAPs).'
           ],
           lunch: [
-            'Lomo de cerdo magro a la plancha (150g, retirar grasa visible).',
-            'Quinoa (50g en crudo).',
-            'Ensalada de lechuga, pepino y pimiento rojo (150g) (porción controlada).',
-            'Yogur natural desnatado sin lactosa.'
+            'Atún al natural (bien escurrido, 100g de peso escurrido).',
+            'Judías verdes al vapor (aprox. 75g).',
+            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).'
           ],
           snack: '1 kiwi.',
           dinner: [
-            'Atún al natural (bien escurrido, 100g de peso escurrido).',
-            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
-            'Judías verdes al vapor (aprox. 100g).'
+            'Crema de calabacín y zanahoria (hecha con caldo de pollo casero, mínimo AOVE, sin cebolla/ajo).',
+            'Pechuga de pavo a la plancha (180g, sin piel).'
           ]
         },
         {
@@ -102,17 +98,17 @@
           ],
           midMorning: '1 kiwi.',
           snacksBetweenMeals: [
-            'Pechuga de pollo fría a la plancha (50g).' 
+            'Pechuga de pollo fría a la plancha (50g).'
           ],
           lunch: [
-            'Pechuga de pavo a la plancha (150g, sin piel).',
-            'Patatas hervidas (150g).',
-            'Acelgas hervidas con tomate triturado natural (150g) (sin ajo/cebolla).',
+            'Lomo de cerdo magro a la plancha (150g, retirar grasa visible).',
+            'Ensalada de lechuga, pepino y pimiento rojo (150g) (porción controlada).',
+            'Quinoa (50g en crudo).',
             'Yogur natural desnatado sin lactosa.'
           ],
           snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Trucha a la plancha (200g).',
+            'Trucha (o lenguado/platija) a la plancha (200g).',
             'Puntas de espárragos (1/2 taza) salteadas con mínimo AOVE.',
             'Arroz blanco (50g en crudo).'
           ]
@@ -160,7 +156,7 @@
           snack: '1 plátano pequeño (poco maduro).',
           dinner: [
             'Bacalao al vapor (200g).',
-            'Crema de verduras bajas en FODMAP (calabacín, zanahoria, hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).'
+            'Crema de verduras bajas en FODMAP (calabacín, zanahoria; hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).'
           ]
         },
         {
@@ -199,16 +195,15 @@
             '2-3 lonchas de jamón serrano (en porciones moderadas).'
           ],
           lunch: [
-            'Pavo al horno sin piel (180g).',
+            'Asado de ternera magra (sin grasa visible, 180g).',
             'Arroz blanco (50g en crudo).',
-            'Ensalada de tomate y lechuga (150g).',
+            'Ensalada de lechuga y zanahoria rallada (150g).',
             'Yogur natural desnatado sin lactosa.'
           ],
           snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Asado de ternera magra (sin grasa visible, 180g).',
-            'Judías verdes al vapor (100g).',
-            'Calabacín y tomate a la plancha (150g) (mínimo AOVE).'
+            'Merluza a la plancha (200g).',
+            'Calabacín y pimiento verde a la plancha (150g) (mínimo AOVE).'
           ]
         },
       ];
@@ -239,7 +234,7 @@
           'Jamón serrano (en porciones moderadas)',
           'Jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares añadidos)'
         ],
-        'Verduras (Estrictamente Bajas en FODMAP - ¡Solo estas, sin almidón!)': [
+        'Verduras (Estrictamente Bajas en FODMAP - ¡Solo estas!)': [
           'Espinacas',
           'Lechuga (todas las variedades)',
           'Pepino',
@@ -249,7 +244,7 @@
           'Tomates (preferiblemente cherry o sin semillas si eres sensible)',
           'Acelgas',
           'Endivias',
-          'Judías verdes (en porciones controladas, aprox. 75g-100g)', // Ajustada porción
+          'Judías verdes (en porciones controladas, aprox. 75g-100g)',
           'Puntas de espárragos (porción controlada, aprox. 1/2 taza)'
         ],
         'Frutas (MUY Limitadas y Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
@@ -265,7 +260,9 @@
           'Quinoa',
           'Arroz blanco',
           'Patatas (para hervir/asar, sin recalentar)',
-          'Boniato (porción controlada, si se reintroduce y tolera)'
+          'Boniato (porción controlada, si se reintroduce y tolera)',
+          'Tortitas de maíz/arroz (verificar sin azúcares añadidos ni fructosa)', // Reintroducidas en lista compra por si acaso
+          'Fideos de arroz o maíz (para sopas)'
         ],
         'Grasas y Aceites': [
           'Aceite de oliva virgen extra (cantidad controlada)',
@@ -325,6 +322,7 @@
         const [selectedDate, setSelectedDate] = React.useState(new Date().toISOString().slice(0, 10));
         const [mealsEaten, setMealsEaten] = React.useState('');
         const [symptomNotes, setSymptomNotes] = React.useState('');
+        // No usamos selectedSymptoms ni commonSymptoms en el formulario de registro, pero los mantenemos si el historial necesita mostrarlos
         const [selectedSymptoms, setSelectedSymptoms] = React.useState({});
         const [logMessage, setLogMessage] = React.useState('');
         const [symptomLogs, setSymptomLogs] = React.useState([]);
@@ -336,9 +334,10 @@
         const [expandedWeeks, setExpandedWeeks] = React.useState({}); 
 
 
-        const commonSymptoms = [
-          'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
-        ];
+        // commonSymptoms ya no es necesario si quitamos la sección de botones de síntomas del formulario
+        // const commonSymptoms = [
+        //   'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
+        // ];
 
         // Función auxiliar para obtener el número de semana del año (ISO 8601)
         const getWeekNumber = (d) => {
@@ -365,15 +364,16 @@
 
         // Función para guardar el registro
         const saveSymptomLog = () => {
-          if (!mealsEaten.trim() && Object.keys(selectedSymptoms).length === 0 && !symptomNotes.trim()) {
-            setLogMessage('Por favor, ingresa al menos las comidas, un síntoma o una nota.');
+          // La validación ahora solo depende de comidas o notas, ya que no hay botones de síntomas
+          if (!mealsEaten.trim() && !symptomNotes.trim()) {
+            setLogMessage('Por favor, ingresa al menos las comidas o una nota.');
             return;
           }
 
           const newLog = {
             date: new Date(selectedDate),
             meals: mealsEaten,
-            symptoms: selectedSymptoms, 
+            symptoms: selectedSymptoms, // Se guarda el estado actual de selectedSymptoms (probablemente vacío)
             notes: symptomNotes,
             timestamp: new Date()
           };
@@ -674,4 +674,84 @@
                       {/* Historial de Registros Agrupado y Desplegable */}
                       <div className="mt-8">
                         <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 text-center">Historial de Registros</h3>
-                        {s
+                        {symptomLogs.length === 0 ? (
+                          <p className="text-gray-400 text-center">No hay registros guardados aún. ¡Empieza a añadir!</p>
+                        ) : (
+                          Object.entries(groupedSymptoms).sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)).map(([year, months]) => (
+                            <div key={year} className="mb-6 bg-gray-700 p-3 rounded-md shadow-sm">
+                              <h4 
+                                className="text-xl font-bold text-purple-400 mb-2 cursor-pointer flex justify-between items-center"
+                                onClick={() => toggleYear(year)}
+                              >
+                                {year} {expandedYears[year] ? '▼' : '▶'}
+                              </h4>
+                              {expandedYears[year] && (
+                                <div className="ml-4">
+                                  {Object.entries(months).sort(([monthNameA], [monthNameB]) => {
+                                    const monthOrder = ["diciembre", "noviembre", "octubre", "septiembre", "agosto", "julio", "junio", "mayo", "abril", "marzo", "febrero", "enero"]; // Orden descendente
+                                    return monthOrder.indexOf(monthNameA) - monthOrder.indexOf(monthNameB);
+                                  }).map(([month, weeks]) => (
+                                    <div key={month} className="mb-4">
+                                      <h5 
+                                        className="text-lg font-bold text-green-400 mb-2 cursor-pointer flex justify-between items-center"
+                                        onClick={() => toggleMonth(year, month)}
+                                      >
+                                        {month.charAt(0).toUpperCase() + month.slice(1)} {expandedMonths[`${year}-${month}`] ? '▼' : '▶'}
+                                      </h5>
+                                      {expandedMonths[`${year}-${month}`] && (
+                                        <div className="ml-4">
+                                          {Object.entries(weeks).sort(([weekA], [weekB]) => parseInt(weekB) - parseInt(weekA)).map(([week, logsInWeek]) => (
+                                            <div key={week} className="mb-3">
+                                              <h6 
+                                                className="text-base font-semibold text-orange-300 mb-2 cursor-pointer flex justify-between items-center"
+                                                onClick={() => toggleWeek(year, week)}
+                                              >
+                                                Semana {week} {expandedWeeks[`${year}-${week}`] ? '▼' : '▶'}
+                                              </h6>
+                                              {expandedWeeks[`${year}-${week}`] && (
+                                                <div className="space-y-2">
+                                                  {logsInWeek.map((log) => (
+                                                    <div 
+                                                      key={log.timestamp} 
+                                                      className="bg-gray-800 p-3 rounded-md shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+                                                      onClick={() => setViewingLog(log)}
+                                                    >
+                                                      <span className="text-gray-200 font-medium">
+                                                        {log.date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                                                      </span>
+                                                      <span className="text-blue-300">Ver Detalles →</span>
+                                                    </div>
+                                                  ))}
+                                                </div>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </main>
+
+            {/* Footer */}
+            <footer className="w-full max-w-4xl mt-8 p-4 text-center text-gray-400 text-sm">
+              <p>Tu Guía SIBO - Creada por modulogica.</p>
+              <p>Recuerda siempre consultar a un profesional de la salud.</p>
+            </footer>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
