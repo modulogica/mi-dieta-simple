@@ -21,6 +21,18 @@
         margin: 0;
         padding: 0;
       }
+      /* Estilos para los círculos de intensidad (se mantienen por si se reintroduce la funcionalidad) */
+      .severity-circle {
+        width: 24px; /* Tamaño del círculo */
+        height: 24px;
+        border-radius: 50%; /* Hacerlo redondo */
+        border: 2px solid theme('colors.gray.500'); /* Borde para los no seleccionados */
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+      }
+      .severity-circle.selected-1 { background-color: theme('colors.green.500'); border-color: theme('colors.green.600'); }
+      .severity-circle.selected-2 { background-color: theme('colors.yellow.500'); border-color: theme('colors.yellow.600'); }
+      .severity-circle.selected-3 { background-color: theme('colors.red.500'); border-color: theme('colors.red.600'); }
     </style>
   </head>
   <body>
@@ -37,58 +49,72 @@
         {
           day: 'Lunes',
           breakfast: [
-            'Leche de almendras (sin azúcar, sin gomas) con 1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).',
-            'Opcional: Tu batido de Paleobull Savia (Creatina, Magnesio, Potasio) y Elixir (Colágeno + TCM).'
+            'Leche de almendras (sin azúcar, sin gomas) (150ml) con copos de avena certificados sin gluten (30g) cocidos con agua y canela.',
+            '1/2 taza de arándanos frescos.',
+            '1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
           ],
-          midMorning: '1 huevo cocido.',
-          snacksBetweenMeals: [],
+          midMorning: '1 kiwi.',
+          snacksBetweenMeals: [
+            '1 huevo cocido.',
+            'Palitos de zanahoria.'
+          ],
           lunch: [
-            'Pechuga de pollo a la plancha (180g, sin piel).',
-            'Salteado ligero de espinacas y zanahorias (mínimo AOVE, sin ajo/cebolla).',
+            'Pechuga de pollo a la plancha (150g, sin piel).',
+            'Arroz blanco (50g en crudo).',
+            'Salteado ligero de espinacas y zanahorias (150g) (mínimo AOVE, sin ajo/cebolla).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Queso fresco desnatado sin lactosa (pequeña porción).',
+          snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Merluza al horno (220g).',
-            'Judías verdes al vapor (aprox. 75g, muy bajo en carbos).'
+            'Merluza al horno (200g).',
+            'Patatas hervidas (150g).',
+            'Judías verdes al vapor (aprox. 75g).'
           ]
         },
         {
           day: 'Martes',
           breakfast: [
-            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).'
+            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).',
+            '1 rebanada de pan de arroz tostado.'
           ],
-          midMorning: '2-3 lonchas de jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares/FODMAPs).',
-          snacksBetweenMeals: [],
+          midMorning: '1 plátano pequeño (poco maduro).',
+          snacksBetweenMeals: [
+            '2-3 lonchas de jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares/FODMAPs).'
+          ],
           lunch: [
-            'Atún al natural (bien escurrido).',
-            'Judías verdes al vapor (aprox. 75g).', // AÑADIDO
-            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
+            'Lomo de cerdo magro a la plancha (150g, retirar grasa visible).',
+            'Quinoa (50g en crudo).',
+            'Ensalada de lechuga, pepino y pimiento rojo (150g) (porción controlada).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: '1 huevo cocido.',
+          snack: '1 kiwi.',
           dinner: [
-            'Crema de calabacín y zanahoria (hecha con caldo de pollo casero, mínimo AOVE, sin cebolla/ajo).',
-            'Pechuga de pavo a la plancha (180g, sin piel).'
+            'Atún al natural (bien escurrido, 100g de peso escurrido).',
+            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
+            'Judías verdes al vapor (aprox. 100g).'
           ]
         },
         {
           day: 'Miércoles',
           breakfast: [
-            'Yogur natural desnatado sin lactosa con 1 cucharada de semillas de chía.',
+            'Yogur natural desnatado sin lactosa con 1/2 taza de fresas y 1 cucharada de semillas de chía.',
             'Infusión de menta.'
           ],
-          midMorning: '10-12 almendras (si las toleras, porción controlada, cuidado con las grasas totales del día).',
-          snacksBetweenMeals: [],
+          midMorning: '1 kiwi.',
+          snacksBetweenMeals: [
+            'Pechuga de pollo fría a la plancha (50g).' 
+          ],
           lunch: [
-            'Lomo de cerdo magro a la plancha (180g, retirar grasa visible).',
-            'Ensalada de lechuga, pepino y pimiento rojo (porción controlada).',
+            'Pechuga de pavo a la plancha (150g, sin piel).',
+            'Patatas hervidas (150g).',
+            'Acelgas hervidas con tomate triturado natural (150g) (sin ajo/cebolla).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Pechuga de pollo fría a la plancha (pequeña porción).',
+          snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Trucha (o lenguado/platija) a la plancha (220g).',
-            'Puntas de espárragos (1/2 taza) salteadas con mínimo AOVE.'
+            'Trucha a la plancha (200g).',
+            'Puntas de espárragos (1/2 taza) salteadas con mínimo AOVE.',
+            'Arroz blanco (50g en crudo).'
           ]
         },
         {
@@ -96,72 +122,93 @@
           breakfast: [
             'Batido: 1 taza de leche de arroz (sin azúcar), 1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
           ],
-          midMorning: 'Rodajas de pepino.',
-          snacksBetweenMeals: [],
+          midMorning: '1 plátano pequeño (poco maduro).',
+          snacksBetweenMeals: [
+            'Rodajas de pepino (100g).',
+            '1 huevo cocido.'
+          ],
           lunch: [
-            'Pavo al horno sin piel (180g).',
-            'Acelgas hervidas.',
+            'Sepia o pota a la plancha (150g).',
+            'Quinoa (50g en crudo).',
+            'Salteado de calabacín y zanahoria (150g) (mínimo AOVE, sin ajo/cebolla).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: '1 huevo cocido.',
+          snack: '1 kiwi.',
           dinner: [
-            'Sepia o pota a la plancha (220g).',
-            'Salteado de calabacín y zanahoria (mínimo AOVE, sin ajo/cebolla).'
+            'Asado de ternera magra (sin grasa visible, 180g).',
+            'Patatas hervidas (150g).',
+            'Ensalada de lechuga y tomate (150g).'
           ]
         },
         {
           day: 'Viernes',
           breakfast: [
             'Tortilla de 2 claras de huevo con pimiento verde picado (mínimo AOVE).',
+            '1/2 taza de arándanos frescos.',
             'Infusión de jengibre.'
           ],
-          midMorning: '10-12 nueces de macadamia (controlar porción por la grasa).',
-          snacksBetweenMeals: [],
+          midMorning: '1 kiwi.',
+          snacksBetweenMeals: [
+            'Pechuga de pavo fría a la plancha (50g).'
+          ],
           lunch: [
-            'Pechuga de pollo desmenuzada (180g).',
+            'Pechuga de pollo desmenuzada (150g).',
+            'Arroz blanco (50g en crudo).',
+            'Judías verdes al vapor (100g) con rodajas de tomate.',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Yogur natural desnatado sin lactosa con una pizca de canela.',
+          snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Ensalada grande de pollo a la plancha (150g) con lechuga romana, pepino, rabanitos y tomate cherry.',
-            'Aderezo: AOVE (controlando cantidad), vinagre de manzana y sal.'
+            'Bacalao al vapor (200g).',
+            'Crema de verduras bajas en FODMAP (calabacín, zanahoria, hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).'
           ]
         },
         {
           day: 'Sábado',
           breakfast: [
-            'Leche de almendras (sin azúcar) con 1 cucharada de semillas de chía.'
+            'Leche de almendras (sin azúcar) (150ml) con copos de avena certificados sin gluten (30g) cocidos con agua y canela.',
+            '1/2 taza de arándanos frescos.'
           ],
-          midMorning: '1 huevo cocido.',
-          snacksBetweenMeals: [],
+          midMorning: '1 plátano pequeño (poco maduro).',
+          snacksBetweenMeals: [
+            '1 huevo cocido.',
+            'Hojas de lechuga.'
+          ],
           lunch: [
-            'Bacalao al vapor (220g).',
-            'Judías verdes al vapor (aprox. 75g).',
+            'Lomo de cerdo magro a la plancha (150g).',
+            'Patatas asadas (150g).',
+            'Ensalada de pepino y zanahoria (150g).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Queso fresco desnatado sin lactosa (pequeña porción).',
+          snack: '1 kiwi.',
           dinner: [
-            'Crema de verduras bajas en FODMAP (calabacín, zanahoria; hecha con caldo casero, mínimo AOVE, sin cebolla/ajo).',
-            'Huevo cocido (2 unidades).'
+            'Merluza a la plancha (200g).',
+            'Quinoa (50g en crudo).',
+            'Salteado de espinacas y pimiento rojo (150g) (mínimo AOVE).'
           ]
         },
         {
           day: 'Domingo',
           breakfast: [
             'Huevos pasados por agua (2 unidades).',
-            '1/2 taza de arándanos frescos (muy baja en carbos).'
+            '1/2 taza de arándanos frescos.',
+            '1 rebanada de pan de arroz tostado.'
           ],
-          midMorning: '10-12 almendras (si toleras y lo necesitas).',
-          snacksBetweenMeals: [],
+          midMorning: '1 kiwi.',
+          snacksBetweenMeals: [
+            '2-3 lonchas de jamón serrano (en porciones moderadas).'
+          ],
           lunch: [
-            'Asado de ternera magra (sin grasa visible, 180g).',
-            'Ensalada de lechuga, pepino y zanahoria rallada.',
+            'Pavo al horno sin piel (180g).',
+            'Arroz blanco (50g en crudo).',
+            'Ensalada de tomate y lechuga (150g).',
             'Yogur natural desnatado sin lactosa.'
           ],
-          snack: 'Atún al natural (bien escurrido) con rodajas de pepino.',
+          snack: '1 plátano pequeño (poco maduro).',
           dinner: [
-            'Merluza a la plancha (220g).',
-            'Calabacín y pimiento verde a la plancha (mínimo AOVE).'
+            'Asado de ternera magra (sin grasa visible, 180g).',
+            'Judías verdes al vapor (100g).',
+            'Calabacín y tomate a la plancha (150g) (mínimo AOVE).'
           ]
         },
       ];
@@ -192,7 +239,7 @@
           'Jamón serrano (en porciones moderadas)',
           'Jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares añadidos)'
         ],
-        'Verduras (Estrictamente Bajas en FODMAP - ¡Solo estas!)': [
+        'Verduras (Estrictamente Bajas en FODMAP - ¡Solo estas, sin almidón!)': [
           'Espinacas',
           'Lechuga (todas las variedades)',
           'Pepino',
@@ -202,21 +249,26 @@
           'Tomates (preferiblemente cherry o sin semillas si eres sensible)',
           'Acelgas',
           'Endivias',
-          'Judías verdes (en porciones controladas, aprox. 75g)',
-          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)',
+          'Judías verdes (en porciones controladas, aprox. 75g-100g)', // Ajustada porción
+          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)'
         ],
         'Frutas (MUY Limitadas y Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
           'Arándanos (máx. 1/4 taza)',
           'Fresas (máx. 5-6 pequeñas)',
           'Kiwi (1 unidad)',
           'Plátanos verdes/poco maduros (1/2 unidad, no maduros)',
-          'Naranjas (1 pequeña)',
-          'Mandarinas (1 pequeña)'
+        ],
+        'Cereales y Tubérculos (Sin Gluten, Sin Azúcares Añadidos)': [
+          'Pan sin gluten (de arroz o maíz puro, verificar ingredientes)',
+          'Pasta sin gluten (de arroz o maíz)',
+          'Copos de avena certificados sin azúcar (verificar ingredientes)',
+          'Quinoa',
+          'Arroz blanco',
+          'Patatas (para hervir/asar, sin recalentar)',
+          'Boniato (porción controlada, si se reintroduce y tolera)'
         ],
         'Grasas y Aceites': [
           'Aceite de oliva virgen extra (cantidad controlada)',
-          'Almendras (máx. 10-12 unidades)',
-          'Nueces de macadamia (puñado pequeño)',
           'Semillas de chía',
           'Semillas de lino molidas'
         ],
@@ -321,7 +373,7 @@
           const newLog = {
             date: new Date(selectedDate),
             meals: mealsEaten,
-            symptoms: selectedSymptoms,
+            symptoms: selectedSymptoms, 
             notes: symptomNotes,
             timestamp: new Date()
           };
@@ -335,19 +387,17 @@
           setSelectedDate(new Date().toISOString().slice(0, 10));
           setMealsEaten('');
           setSymptomNotes('');
-          setSelectedSymptoms({});
+          setSelectedSymptoms({}); 
           setLogMessage(''); 
         };
 
-        // ************************************************************
-        // NUEVA FUNCIÓN: Eliminar un registro del diario
-        // ************************************************************
+        // Función Eliminar un registro del diario
         const deleteSymptomLog = (logToDeleteTimestamp) => {
             if (window.confirm('¿Estás seguro de que quieres eliminar este registro?')) {
                 const updatedLogs = symptomLogs.filter(log => log.timestamp.toISOString() !== logToDeleteTimestamp);
                 localStorage.setItem('siboSymptomLogs', JSON.stringify(updatedLogs));
                 setSymptomLogs(updatedLogs);
-                setViewingLog(null); // Volver a la lista si se elimina el que se estaba viendo
+                setViewingLog(null); 
                 setLogMessage('Registro eliminado con éxito.');
             }
         };
@@ -624,84 +674,4 @@
                       {/* Historial de Registros Agrupado y Desplegable */}
                       <div className="mt-8">
                         <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 text-center">Historial de Registros</h3>
-                        {symptomLogs.length === 0 ? (
-                          <p className="text-gray-400 text-center">No hay registros guardados aún. ¡Empieza a añadir!</p>
-                        ) : (
-                          Object.entries(groupedSymptoms).sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)).map(([year, months]) => (
-                            <div key={year} className="mb-6 bg-gray-700 p-3 rounded-md shadow-sm">
-                              <h4 
-                                className="text-xl font-bold text-purple-400 mb-2 cursor-pointer flex justify-between items-center"
-                                onClick={() => toggleYear(year)}
-                              >
-                                {year} {expandedYears[year] ? '▼' : '▶'}
-                              </h4>
-                              {expandedYears[year] && (
-                                <div className="ml-4">
-                                  {Object.entries(months).sort(([monthNameA], [monthNameB]) => {
-                                    const monthOrder = ["diciembre", "noviembre", "octubre", "septiembre", "agosto", "julio", "junio", "mayo", "abril", "marzo", "febrero", "enero"]; // Orden descendente
-                                    return monthOrder.indexOf(monthNameA) - monthOrder.indexOf(monthNameB);
-                                  }).map(([month, weeks]) => (
-                                    <div key={month} className="mb-4">
-                                      <h5 
-                                        className="text-lg font-bold text-green-400 mb-2 cursor-pointer flex justify-between items-center"
-                                        onClick={() => toggleMonth(year, month)}
-                                      >
-                                        {month.charAt(0).toUpperCase() + month.slice(1)} {expandedMonths[`${year}-${month}`] ? '▼' : '▶'}
-                                      </h5>
-                                      {expandedMonths[`${year}-${month}`] && (
-                                        <div className="ml-4">
-                                          {Object.entries(weeks).sort(([weekA], [weekB]) => parseInt(weekB) - parseInt(weekA)).map(([week, logsInWeek]) => (
-                                            <div key={week} className="mb-3">
-                                              <h6 
-                                                className="text-base font-semibold text-orange-300 mb-2 cursor-pointer flex justify-between items-center"
-                                                onClick={() => toggleWeek(year, week)}
-                                              >
-                                                Semana {week} {expandedWeeks[`${year}-${week}`] ? '▼' : '▶'}
-                                              </h6>
-                                              {expandedWeeks[`${year}-${week}`] && (
-                                                <div className="space-y-2">
-                                                  {logsInWeek.map((log) => (
-                                                    <div 
-                                                      key={log.timestamp} 
-                                                      className="bg-gray-800 p-3 rounded-md shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-600 transition-colors duration-200"
-                                                      onClick={() => setViewingLog(log)}
-                                                    >
-                                                      <span className="text-gray-200 font-medium">
-                                                        {log.date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
-                                                      </span>
-                                                      <span className="text-blue-300">Ver Detalles →</span>
-                                                    </div>
-                                                  ))}
-                                                </div>
-                                              )}
-                                            </div>
-                                          ))}
-                                        </div>
-                                      )}
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </>
-                  )}
-                </div>
-              )}
-            </main>
-
-            {/* Footer */}
-            <footer className="w-full max-w-4xl mt-8 p-4 text-center text-gray-400 text-sm">
-              <p>Tu Guía SIBO - Creada por modulogica.</p>
-              <p>Recuerda siempre consultar a un profesional de la salud.</p>
-            </footer>
-          </div>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
-  </body>
-</html>
+                        {s
