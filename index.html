@@ -21,7 +21,7 @@
         margin: 0;
         padding: 0;
       }
-      /* Estilos para los círculos de intensidad (se mantienen por si se reintroduce la funcionalidad) */
+      /* Estilos para los círculos de intensidad (se mantienen en el CSS por si hay logs antiguos que los referencien, pero la sección de botones ha sido eliminada) */
       .severity-circle {
         width: 24px; /* Tamaño del círculo */
         height: 24px;
@@ -53,7 +53,7 @@
             '1/2 taza de arándanos frescos.',
             '1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
           ],
-          midMorning: '1 kiwi.', 
+          midMorning: '1 kiwi.',
           snacksBetweenMeals: [
             '1 huevo cocido.',
             'Palitos de zanahoria.'
@@ -101,7 +101,7 @@
           ],
           midMorning: '1 kiwi.',
           snacksBetweenMeals: [
-            'Pechuga de pollo fría a la plancha (50g).'
+            'Pechuga de pollo fría a la plancha (50g).' 
           ],
           lunch: [
             'Pechuga de pavo a la plancha (150g, sin piel).',
@@ -345,10 +345,10 @@
         const [favLogMessage, setFavLogMessage] = React.useState('');
 
 
-        // Common Symptoms (se mantienen por si el historial los necesita para mostrar detalles de logs antiguos)
-        const commonSymptoms = [
-          'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
-        ];
+        // commonSymptoms ya no es necesario si quitamos la sección de botones de síntomas del formulario
+        // const commonSymptoms = [
+        //   'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
+        // ];
 
         // --- FUNCIONES DEL DIARIO ---
 
@@ -421,7 +421,7 @@
           const newLog = {
             date: new Date(selectedDate),
             ingestas: dailyIngestas, // Ahora es un ARRAY de ingestas
-            symptoms: {}, // Ya no se capturan con botones, se guarda vacío o del historial de logs antiguos
+            symptoms: {}, // Se guarda vacío o del historial de logs antiguos
             notes: symptomNotes,
             timestamp: new Date() // Para ordenación precisa
           };
@@ -437,7 +437,7 @@
           setDailyIngestas([]); // Limpiar ingestas del día
           setSymptomNotes('');
           // selectedSymptoms ya no se usa para el input, pero se puede resetear igual
-          setSelectedSymptoms({}); 
+          // setSelectedSymptoms({}); 
         };
 
         // Función Eliminar un registro del diario (en el historial)
@@ -566,7 +566,7 @@
                 Diario
               </button>
               <button
-                onClick={() => setActiveTab('favorites')} {/* NUEVO BOTÓN */}
+                onClick={() => setActiveTab('favorites')}
                 className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
                   activeTab === 'favorites' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
                 }`}
@@ -688,7 +688,7 @@
                       <h3 className="text-xl font-bold text-blue-400 mb-2">Detalle del Registro del {new Date(viewingLog.date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
                       
                       <div>
-                        <h4 className="font-bold text-lg text-gray-300">Comidas Registradas:</h4>
+                        <h4 className="font-bold text-lg text-gray-300">Comidas Registradas:</h4> {/* CAMBIO: Etiqueta */}
                         {viewingLog.ingestas && viewingLog.ingestas.length > 0 ? (
                             <ul className="list-disc list-inside text-gray-200 space-y-1">
                                 {viewingLog.ingestas.map((ingesta, idx) => (
@@ -705,7 +705,7 @@
                         )}
                       </div>
 
-                      {/* Sección de Síntomas Reportados (anterior) - Se mantiene para logs antiguos */}
+                      {/* Sección de Síntomas Reportados (anterior) - Se mantiene para logs antiguos si se desea ver */}
                       {Object.keys(viewingLog.symptoms || {}).length > 0 && (
                         <div>
                           <h4 className="font-bold text-lg text-gray-300">Síntomas Reportados (Formato anterior):</h4>
@@ -951,7 +951,7 @@
                       <label htmlFor="favoriteDesc" className="block text-gray-300 text-sm font-bold mb-1">Ingredientes/Descripción:</label>
                       <textarea
                         id="favoriteDesc"
-                        className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 rounded-md bg-gray-900 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="3"
                         placeholder="Ej: Pechuga de pollo a la plancha, arroz blanco, espinacas y zanahoria."
                         value={favoriteDescription}
