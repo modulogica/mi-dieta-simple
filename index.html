@@ -53,7 +53,7 @@
             '1/2 taza de arándanos frescos.',
             '1 cucharada de proteína en polvo (sin FODMAPs ni azúcares).'
           ],
-          midMorning: '1 kiwi.',
+          midMorning: '1 kiwi.', 
           snacksBetweenMeals: [
             '1 huevo cocido.',
             'Palitos de zanahoria.'
@@ -101,7 +101,7 @@
           ],
           midMorning: '1 kiwi.',
           snacksBetweenMeals: [
-            'Pechuga de pollo fría a la plancha (50g).' 
+            'Pechuga de pollo fría a la plancha (50g).'
           ],
           lunch: [
             'Pechuga de pavo a la plancha (150g, sin piel).',
@@ -321,34 +321,38 @@
         const [activeTab, setActiveTab] = React.useState('diet');
         const [currentDayIndex, setCurrentDayIndex] = React.useState(0);
 
-        // Estados para el Diario de Síntomas
+        // Estados para el Diario
         const [selectedDate, setSelectedDate] = React.useState(new Date().toISOString().slice(0, 10));
-        // Se elimina mealsEaten como string
-        // const [mealsEaten, setMealsEaten] = React.useState('');
         const [symptomNotes, setSymptomNotes] = React.useState('');
-        const [selectedSymptoms, setSelectedSymptoms] = React.useState({}); // Mantener este estado aunque no se use en el form para no romper el historial
-        const [logMessage, setLogMessage] = React.useState('');
-        const [symptomLogs, setSymptomLogs] = React.useState([]);
+        const [symptomLogs, setSymptomLogs] = React.useState([]); // Registros completos (ingestas, notas, síntomas de logs antiguos)
         const [viewingLog, setViewingLog] = React.useState(null);
 
-        // Nuevos estados para controlar la expansión de los grupos
-        const [expandedYears, setExpandedYears] = React.useState({}); 
-        const [expandedMonths, setExpandedMonths] = React.useState({}); 
-        const [expandedWeeks, setExpandedWeeks] = React.useState({}); 
-
-        // Estados para el NUEVO registro de ingestas
+        // Estados para el NUEVO registro de ingestas (en el formulario actual del Diario)
         const ingestionTypes = ['Desayuno', 'Media Mañana', 'Comida', 'Merienda', 'Cena', 'Snack'];
         const [currentIngestionType, setCurrentIngestionType] = React.useState(ingestionTypes[0]);
         const [currentIngestionDescription, setCurrentIngestionDescription] = React.useState('');
         const [currentIngestionReaction, setCurrentIngestionReaction] = React.useState(''); // Bien, Regular, Mal
-        const [dailyIngestas, setDailyIngestas] = React.useState([]); // Array de ingestas para el día actual
+        const [dailyIngestas, setDailyIngestas] = React.useState([]); // Array temporal de ingestas para el día actual antes de guardar el log completo
+
+        // Estados para la nueva pestaña 'Mis Favoritos'
+        const [favoriteName, setFavoriteName] = React.useState('');
+        const [favoriteDescription, setFavoriteDescription] = React.useState('');
+        const [favoriteReaction, setFavoriteReaction] = React.useState('');
+        const [favoriteMeals, setFavoriteMeals] = React.useState([]); // Almacena las comidas favoritas
+
+        // Mensajes de log para el usuario
+        const [logMessage, setLogMessage] = React.useState('');
+        const [favLogMessage, setFavLogMessage] = React.useState('');
+
 
         // Common Symptoms (se mantienen por si el historial los necesita para mostrar detalles de logs antiguos)
         const commonSymptoms = [
           'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
         ];
 
-        // Función para añadir una ingesta al listado del día
+        // --- FUNCIONES DEL DIARIO ---
+
+        // Función para añadir una ingesta al listado del día (antes de guardar el log completo)
         const addIngestion = () => {
           if (!currentIngestionDescription.trim()) {
             setLogMessage('Por favor, describe la comida antes de añadirla.');
@@ -369,7 +373,7 @@
           // Resetear campos de la ingesta
           setCurrentIngestionDescription('');
           setCurrentIngestionReaction('');
-          setLogMessage(''); // Limpiar mensajes
+          setLogMessage(''); // Limpiar mensajes de error/éxito de ingesta
         };
 
         // Función para eliminar una ingesta del listado del día (antes de guardar el log completo)
@@ -387,7 +391,7 @@
           return weekNo;
         };
 
-        // Cargar registros del localStorage al inicio
+        // Cargar registros del localStorage al inicio de la app (para Diario y Favoritos)
         React.useEffect(() => {
           const storedLogs = localStorage.getItem('siboSymptomLogs');
           if (storedLogs) {
@@ -399,10 +403,16 @@
             parsedLogs.sort((a, b) => b.timestamp - a.timestamp);
             setSymptomLogs(parsedLogs);
           }
+
+          const storedFavorites = localStorage.getItem('siboFavoriteMeals');
+          if (storedFavorites) {
+            setFavoriteMeals(JSON.parse(storedFavorites));
+          }
         }, []);
 
         // Función para guardar el registro COMPLETO del día
         const saveSymptomLog = () => {
+          // Validamos que haya ingestas O notas para guardar el log del día
           if (dailyIngestas.length === 0 && !symptomNotes.trim()) {
             setLogMessage('Por favor, ingresa al menos una comida o una nota para el día.');
             return;
@@ -410,10 +420,10 @@
 
           const newLog = {
             date: new Date(selectedDate),
-            ingestas: dailyIngestas, // AHORA ES UN ARRAY DE INGESTAS
-            symptoms: selectedSymptoms, // Mantenemos por compatibilidad con logs antiguos, pero ya no se edita aquí
+            ingestas: dailyIngestas, // Ahora es un ARRAY de ingestas
+            symptoms: {}, // Ya no se capturan con botones, se guarda vacío o del historial de logs antiguos
             notes: symptomNotes,
-            timestamp: new Date()
+            timestamp: new Date() // Para ordenación precisa
           };
 
           const updatedLogs = [...symptomLogs, newLog];
@@ -422,17 +432,17 @@
           setSymptomLogs(updatedLogs);
           setLogMessage('¡Registro del día guardado con éxito!');
 
-          // Limpiar el formulario completo del día
+          // Limpiar el formulario completo del día para el siguiente registro
           setSelectedDate(new Date().toISOString().slice(0, 10));
           setDailyIngestas([]); // Limpiar ingestas del día
           setSymptomNotes('');
+          // selectedSymptoms ya no se usa para el input, pero se puede resetear igual
           setSelectedSymptoms({}); 
-          setLogMessage(''); 
         };
 
         // Función Eliminar un registro del diario (en el historial)
         const deleteSymptomLog = (logToDeleteTimestamp) => {
-            if (window.confirm('¿Estás seguro de que quieres eliminar este registro?')) {
+            if (window.confirm('¿Estás seguro de que quieres eliminar este registro del diario?')) {
                 const updatedLogs = symptomLogs.filter(log => log.timestamp.toISOString() !== logToDeleteTimestamp);
                 localStorage.setItem('siboSymptomLogs', JSON.stringify(updatedLogs));
                 setSymptomLogs(updatedLogs);
@@ -441,8 +451,44 @@
             }
         };
 
+        // --- FUNCIONES DE MIS FAVORITOS ---
 
-        // Funciones para alternar la expansión
+        // Función para guardar una comida favorita
+        const saveFavorite = () => {
+          if (!favoriteName.trim() || !favoriteDescription.trim() || !favoriteReaction) {
+            setFavLogMessage('Por favor, completa todos los campos para añadir un favorito.');
+            return;
+          }
+
+          const newFavorite = {
+            id: Date.now(), // ID único para cada favorito
+            name: favoriteName,
+            description: favoriteDescription,
+            reaction: favoriteReaction
+          };
+
+          const updatedFavorites = [...favoriteMeals, newFavorite];
+          localStorage.setItem('siboFavoriteMeals', JSON.stringify(updatedFavorites));
+          setFavoriteMeals(updatedFavorites);
+          setFavLogMessage('¡Comida favorita guardada!');
+
+          // Limpiar el formulario de favoritos
+          setFavoriteName('');
+          setFavoriteDescription('');
+          setFavoriteReaction('');
+        };
+
+        // Función para eliminar una comida favorita
+        const deleteFavorite = (idToDelete) => {
+          if (window.confirm('¿Estás seguro de que quieres eliminar este favorito?')) {
+            const updatedFavorites = favoriteMeals.filter(fav => fav.id !== idToDelete);
+            localStorage.setItem('siboFavoriteMeals', JSON.stringify(updatedFavorites));
+            setFavoriteMeals(updatedFavorites);
+            setFavLogMessage('Favorito eliminado.');
+          }
+        };
+
+        // Funciones para alternar la expansión (de los grupos del diario)
         const toggleYear = (year) => {
           setExpandedYears(prev => ({ ...prev, [year]: !prev[year] }));
         };
@@ -520,7 +566,7 @@
                 Diario
               </button>
               <button
-                onClick={() => setActiveTab('favorites')} // Nueva pestaña
+                onClick={() => setActiveTab('favorites')} {/* NUEVO BOTÓN */}
                 className={`px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-colors duration-200 ${
                   activeTab === 'favorites' ? 'bg-blue-700 text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'
                 }`}
@@ -629,7 +675,7 @@
 
               {activeTab === 'symptoms' && (
                 <div className="symptoms-diary-section space-y-6">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Diario</h2> {/* CAMBIO DE NOMBRE A "DIARIO" */}
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Diario</h2> {/* CAMBIO DE NOMBRE */}
                   
                   {viewingLog ? ( // Si hay un registro seleccionado, mostrar detalles
                     <div className="bg-gray-700 p-4 rounded-md shadow-sm space-y-4">
@@ -659,8 +705,7 @@
                         )}
                       </div>
 
-                      {/* Sección de Síntomas Reportados (anterior) - Si se quiere volver a poner la de los botones, se activaría aquí */}
-                      {/* Por ahora solo muestra los que se guardaron en logs antiguos o notas */}
+                      {/* Sección de Síntomas Reportados (anterior) - Se mantiene para logs antiguos */}
                       {Object.keys(viewingLog.symptoms || {}).length > 0 && (
                         <div>
                           <h4 className="font-bold text-lg text-gray-300">Síntomas Reportados (Formato anterior):</h4>
@@ -881,18 +926,29 @@
                   )}
                 </div>
               )}
-            </main>
+              
+              {activeTab === 'favorites' && ( /* Nueva Sección de Mis Favoritos */
+                <div className="favorites-section space-y-6">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Mis Favoritos</h2>
+                  
+                  {/* Formulario para añadir un nuevo favorito */}
+                  <div className="bg-gray-700 p-4 rounded-md shadow-sm space-y-4">
+                    <h3 className="font-bold text-xl text-blue-300 mb-2">Añadir Nueva Comida Favorita:</h3>
+                    
+                    <div>
+                      <label htmlFor="favoriteName" className="block text-gray-300 text-sm font-bold mb-1">Nombre (Ej: Pollo con arroz):</label>
+                      <input
+                        type="text"
+                        id="favoriteName"
+                        className="w-full p-2 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value={favoriteName}
+                        onChange={(e) => setFavoriteName(e.target.value)}
+                        placeholder="Nombre de la comida/bebida"
+                      />
+                    </div>
 
-            {/* Footer */}
-            <footer className="w-full max-w-4xl mt-8 p-4 text-center text-gray-400 text-sm">
-              <p>Tu Guía SIBO - Creada por modulogica.</p>
-              <p>Recuerda siempre consultar a un profesional de la salud.</p>
-            </footer>
-          </div>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
-  </body>
-</html>
+                    <div>
+                      <label htmlFor="favoriteDesc" className="block text-gray-300 text-sm font-bold mb-1">Ingredientes/Descripción:</label>
+                      <textarea
+                        id="favoriteDesc"
+                        className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray
