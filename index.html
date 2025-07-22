@@ -951,4 +951,92 @@
                       <label htmlFor="favoriteDesc" className="block text-gray-300 text-sm font-bold mb-1">Ingredientes/Descripción:</label>
                       <textarea
                         id="favoriteDesc"
-                        className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray
+                        className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        rows="3"
+                        placeholder="Ej: Pechuga de pollo a la plancha, arroz blanco, espinacas y zanahoria."
+                        value={favoriteDescription}
+                        onChange={(e) => setFavoriteDescription(e.target.value)}
+                      ></textarea>
+                    </div>
+
+                    <div>
+                      <label className="block text-gray-300 text-sm font-bold mb-1">¿Cómo te suele sentar?</label>
+                      <div className="flex justify-around space-x-2">
+                        {['Bien', 'Regular', 'Mal'].map(reaction => (
+                          <button
+                            key={reaction}
+                            onClick={() => setFavoriteReaction(reaction)}
+                            className={`px-4 py-2 text-sm rounded-md font-semibold transition-colors duration-200 ${
+                              favoriteReaction === reaction
+                                ? 'bg-blue-600 text-white shadow-md'
+                                : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                            }`}
+                          >
+                            {reaction}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={saveFavorite}
+                      className="w-full px-4 py-2 rounded-md font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors duration-200 shadow-md"
+                    >
+                      Guardar Favorito
+                    </button>
+                    {favLogMessage && (
+                      <p className="text-center text-sm text-green-400 mt-2">{favLogMessage}</p>
+                    )}
+                  </div> {/* Fin Formulario Añadir Favorito */}
+
+                  {/* Listado de Comidas Favoritas */}
+                  <div className="mt-8">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 text-center">Mis Comidas Favoritas Guardadas:</h3>
+                    {favoriteMeals.length === 0 ? (
+                      <p className="text-gray-400 text-center">No has guardado ninguna comida favorita aún.</p>
+                    ) : (
+                      <div className="space-y-3">
+                        {favoriteMeals.map((fav) => (
+                          <div 
+                            key={fav.id} 
+                            className="bg-gray-700 p-4 rounded-md shadow-sm flex justify-between items-center"
+                          >
+                            <div>
+                              <p className="text-gray-200 font-semibold">{fav.name}</p>
+                              <p className="text-gray-400 text-sm">{fav.description}</p>
+                              <p className="text-gray-400 text-sm">
+                                Reacción habitual: <span className={`font-semibold ${
+                                    fav.reaction === 'Bien' ? 'text-green-400' :
+                                    fav.reaction === 'Regular' ? 'text-yellow-400' : 'text-red-400'
+                                }`}>{fav.reaction}</span>
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => deleteFavorite(fav.id)}
+                              className="px-3 py-1 text-xs bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div> {/* Fin Listado Favoritos */}
+
+                </div> /* Fin favorites-section */
+              )}
+            </main>
+
+            {/* Footer */}
+            <footer className="w-full max-w-4xl mt-8 p-4 text-center text-gray-400 text-sm">
+              <p>Tu Guía SIBO - Creada por modulogica.</p>
+              <p>Recuerda siempre consultar a un profesional de la salud.</p>
+            </footer>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
