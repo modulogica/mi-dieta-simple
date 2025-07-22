@@ -73,21 +73,24 @@
         {
           day: 'Martes',
           breakfast: [
-            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).'
+            'Huevos revueltos (2 unidades) con rodajas de tomate y albahaca fresca (mínimo AOVE).',
+            '1 rebanada de pan de arroz tostado.'
           ],
           midMorning: '1 plátano pequeño (poco maduro).',
           snacksBetweenMeals: [
             '2-3 lonchas de jamón cocido (verificar: sin lactosa, sin dextrosa, sin azúcares/FODMAPs).'
           ],
           lunch: [
-            'Atún al natural (bien escurrido, 100g de peso escurrido).',
-            'Judías verdes al vapor (aprox. 75g).',
-            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).'
+            'Lomo de cerdo magro a la plancha (150g, retirar grasa visible).',
+            'Quinoa (50g en crudo).',
+            'Ensalada de lechuga, pepino y pimiento rojo (150g) (porción controlada).',
+            'Yogur natural desnatado sin lactosa.'
           ],
           snack: '1 kiwi.',
           dinner: [
-            'Crema de calabacín y zanahoria (hecha con caldo de pollo casero, mínimo AOVE, sin cebolla/ajo).',
-            'Pechuga de pavo a la plancha (180g, sin piel).'
+            'Atún al natural (bien escurrido, 100g de peso escurrido).',
+            'Salsa de tomate casera (solo tomate triturado, pizca de AOVE, albahaca, sal, sin cebolla/ajo).',
+            'Judías verdes al vapor (aprox. 100g).'
           ]
         },
         {
@@ -98,12 +101,12 @@
           ],
           midMorning: '1 kiwi.',
           snacksBetweenMeals: [
-            'Pechuga de pollo fría a la plancha (50g).'
+            'Pechuga de pollo fría a la plancha (50g).' 
           ],
           lunch: [
-            'Lomo de cerdo magro a la plancha (150g, retirar grasa visible).',
-            'Ensalada de lechuga, pepino y pimiento rojo (150g) (porción controlada).',
-            'Quinoa (50g en crudo).',
+            'Pechuga de pavo a la plancha (150g, sin piel).',
+            'Patatas hervidas (150g).',
+            'Acelgas hervidas con tomate triturado natural (150g) (sin ajo/cebolla).',
             'Yogur natural desnatado sin lactosa.'
           ],
           snack: '1 plátano pequeño (poco maduro).',
@@ -245,7 +248,7 @@
           'Acelgas',
           'Endivias',
           'Judías verdes (en porciones controladas, aprox. 75g-100g)',
-          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)'
+          'Puntas de espárragos (porción controlada, aprox. 1/2 taza)',
         ],
         'Frutas (MUY Limitadas y Estrictamente Bajas en Fructosa/FODMAP - ¡Atención a las porciones!)': [
           'Arándanos (máx. 1/4 taza)',
@@ -261,7 +264,7 @@
           'Arroz blanco',
           'Patatas (para hervir/asar, sin recalentar)',
           'Boniato (porción controlada, si se reintroduce y tolera)',
-          'Tortitas de maíz/arroz (verificar sin azúcares añadidos ni fructosa)', // Reintroducidas en lista compra por si acaso
+          'Tortitas de maíz/arroz (verificar sin azúcares añadidos ni fructosa)',
           'Fideos de arroz o maíz (para sopas)'
         ],
         'Grasas y Aceites': [
@@ -320,9 +323,9 @@
 
         // Estados para el Diario de Síntomas
         const [selectedDate, setSelectedDate] = React.useState(new Date().toISOString().slice(0, 10));
-        const [mealsEaten, setMealsEaten] = React.useState('');
+        // Se elimina mealsEaten como string
+        // const [mealsEaten, setMealsEaten] = React.useState('');
         const [symptomNotes, setSymptomNotes] = React.useState('');
-        // No usamos selectedSymptoms ni commonSymptoms en el formulario de registro, pero los mantenemos si el historial necesita mostrarlos
         const [selectedSymptoms, setSelectedSymptoms] = React.useState({});
         const [logMessage, setLogMessage] = React.useState('');
         const [symptomLogs, setSymptomLogs] = React.useState([]);
@@ -333,11 +336,47 @@
         const [expandedMonths, setExpandedMonths] = React.useState({}); 
         const [expandedWeeks, setExpandedWeeks] = React.useState({}); 
 
+        // Estados para el NUEVO registro de ingestas
+        const ingestionTypes = ['Desayuno', 'Media Mañana', 'Comida', 'Merienda', 'Cena', 'Snack'];
+        const [currentIngestionType, setCurrentIngestionType] = React.useState(ingestionTypes[0]);
+        const [currentIngestionDescription, setCurrentIngestionDescription] = React.useState('');
+        const [currentIngestionReaction, setCurrentIngestionReaction] = React.useState(''); // Bien, Regular, Mal
+        const [dailyIngestas, setDailyIngestas] = React.useState([]); // Array de ingestas para el día actual
 
-        // commonSymptoms ya no es necesario si quitamos la sección de botones de síntomas del formulario
-        // const commonSymptoms = [
-        //   'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
-        // ];
+        // Common Symptoms (se mantienen por si el historial los necesita para mostrar detalles de logs antiguos)
+        const commonSymptoms = [
+          'Hinchazón', 'Gases', 'Diarrea', 'Estreñimiento'
+        ];
+
+        // Función para añadir una ingesta al listado del día
+        const addIngestion = () => {
+          if (!currentIngestionDescription.trim()) {
+            setLogMessage('Por favor, describe la comida antes de añadirla.');
+            return;
+          }
+          if (!currentIngestionReaction) {
+            setLogMessage('Por favor, selecciona cómo te sentó la comida.');
+            return;
+          }
+
+          const newIngestion = {
+            type: currentIngestionType,
+            description: currentIngestionDescription,
+            reaction: currentIngestionReaction
+          };
+          setDailyIngestas(prev => [...prev, newIngestion]);
+          
+          // Resetear campos de la ingesta
+          setCurrentIngestionDescription('');
+          setCurrentIngestionReaction('');
+          setLogMessage(''); // Limpiar mensajes
+        };
+
+        // Función para eliminar una ingesta del listado del día (antes de guardar el log completo)
+        const removeIngestion = (indexToRemove) => {
+          setDailyIngestas(prev => prev.filter((_, index) => index !== indexToRemove));
+        };
+
 
         // Función auxiliar para obtener el número de semana del año (ISO 8601)
         const getWeekNumber = (d) => {
@@ -362,18 +401,17 @@
           }
         }, []);
 
-        // Función para guardar el registro
+        // Función para guardar el registro COMPLETO del día
         const saveSymptomLog = () => {
-          // La validación ahora solo depende de comidas o notas, ya que no hay botones de síntomas
-          if (!mealsEaten.trim() && !symptomNotes.trim()) {
-            setLogMessage('Por favor, ingresa al menos las comidas o una nota.');
+          if (dailyIngestas.length === 0 && !symptomNotes.trim()) {
+            setLogMessage('Por favor, ingresa al menos una comida o una nota para el día.');
             return;
           }
 
           const newLog = {
             date: new Date(selectedDate),
-            meals: mealsEaten,
-            symptoms: selectedSymptoms, // Se guarda el estado actual de selectedSymptoms (probablemente vacío)
+            ingestas: dailyIngestas, // AHORA ES UN ARRAY DE INGESTAS
+            symptoms: selectedSymptoms, // Mantenemos por compatibilidad con logs antiguos, pero ya no se edita aquí
             notes: symptomNotes,
             timestamp: new Date()
           };
@@ -382,16 +420,17 @@
           updatedLogs.sort((a, b) => b.timestamp - a.timestamp); 
           localStorage.setItem('siboSymptomLogs', JSON.stringify(updatedLogs)); 
           setSymptomLogs(updatedLogs);
-          setLogMessage('¡Registro guardado con éxito!');
+          setLogMessage('¡Registro del día guardado con éxito!');
 
+          // Limpiar el formulario completo del día
           setSelectedDate(new Date().toISOString().slice(0, 10));
-          setMealsEaten('');
+          setDailyIngestas([]); // Limpiar ingestas del día
           setSymptomNotes('');
           setSelectedSymptoms({}); 
           setLogMessage(''); 
         };
 
-        // Función Eliminar un registro del diario
+        // Función Eliminar un registro del diario (en el historial)
         const deleteSymptomLog = (logToDeleteTimestamp) => {
             if (window.confirm('¿Estás seguro de que quieres eliminar este registro?')) {
                 const updatedLogs = symptomLogs.filter(log => log.timestamp.toISOString() !== logToDeleteTimestamp);
@@ -595,8 +634,34 @@
                       <h3 className="text-xl font-bold text-blue-400 mb-2">Detalle del Registro del {new Date(viewingLog.date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
                       
                       <div>
-                        <h4 className="font-bold text-lg text-gray-300">Comidas y Reacciones:</h4>
-                        <p className="text-gray-200 whitespace-pre-wrap">{viewingLog.meals}</p>
+                        <h4 className="font-bold text-lg text-gray-300">Comidas Registradas:</h4> {/* CAMBIO: Etiqueta */}
+                        {viewingLog.ingestas && viewingLog.ingestas.length > 0 ? (
+                            <ul className="list-disc list-inside text-gray-200 space-y-1">
+                                {viewingLog.ingestas.map((ingesta, idx) => (
+                                    <li key={idx}>
+                                        <span className="font-semibold">{ingesta.type}:</span> {ingesta.description} (<span className={`font-semibold ${
+                                            ingesta.reaction === 'Bien' ? 'text-green-400' :
+                                            ingesta.reaction === 'Regular' ? 'text-yellow-400' : 'text-red-400'
+                                        }`}>{ingesta.reaction}</span>)
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-gray-200">Ninguna comida registrada para este día.</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <h4 className="font-bold text-lg text-gray-300">Síntomas Reportados (Formato anterior):</h4> {/* CAMBIO: Etiqueta */}
+                        <ul className="list-disc list-inside text-gray-200">
+                          {Object.keys(viewingLog.symptoms).length > 0 ? (
+                            Object.entries(viewingLog.symptoms).map(([symptom, severity]) => (
+                              <li key={symptom}>{symptom}: {severity}</li>
+                            ))
+                          ) : (
+                            <li>Ningún síntoma específico reportado.</li>
+                          )}
+                        </ul>
                       </div>
 
                       <div>
@@ -609,7 +674,7 @@
                         onClick={() => deleteSymptomLog(viewingLog.timestamp.toISOString())}
                         className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200 shadow-md mt-4"
                       >
-                        Eliminar Registro
+                        Eliminar Registro del Día
                       </button>
                     </div>
                   ) : ( // Si no hay registro seleccionado, mostrar el formulario y la lista
@@ -631,22 +696,89 @@
                           />
                         </div>
 
-                        {/* Registro de Comidas y Reacción */}
-                        <div>
-                          <label htmlFor="meals" className="block text-gray-300 text-sm font-bold mb-1">
-                            ¿Qué comiste hoy y cómo te sentó? (Desayuno, Almuerzo, Comida, Merienda, Cena, Snacks)
-                          </label>
-                          <textarea
-                            id="meals"
-                            className="w-full p-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            rows="6"
-                            placeholder="Ej: Desayuno: Avena con leche almendras (Bien). Comida: Pollo con espinacas (Bien). Cena: Merluza con patata (Mal, me dio gases)."
-                            value={mealsEaten}
-                            onChange={(e) => setMealsEaten(e.target.value)}
-                          ></textarea>
-                        </div>
-                        
-                        {/* Notas Adicionales */}
+                        {/* REGISTRO DE INGESTAS INDIVIDUALES */}
+                        <div className="bg-gray-800 p-4 rounded-md shadow-sm space-y-3">
+                          <h4 className="font-bold text-lg text-blue-300 mb-2">Añadir Nueva Comida:</h4>
+                          
+                          <div>
+                            <label htmlFor="ingestionType" className="block text-gray-300 text-sm font-bold mb-1">Tipo de Ingesta:</label>
+                            <select
+                              id="ingestionType"
+                              className="w-full p-2 rounded-md bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              value={currentIngestionType}
+                              onChange={(e) => setCurrentIngestionType(e.target.value)}
+                            >
+                              {ingestionTypes.map(type => (
+                                <option key={type} value={type}>{type}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <label htmlFor="ingestionDesc" className="block text-gray-300 text-sm font-bold mb-1">Descripción de la Comida:</label>
+                            <textarea
+                              id="ingestionDesc"
+                              className="w-full p-3 rounded-md bg-gray-900 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              rows="3"
+                              placeholder="Ej: Avena con leche de almendras, arándanos y proteína en polvo."
+                              value={currentIngestionDescription}
+                              onChange={(e) => setCurrentIngestionDescription(e.target.value)}
+                            ></textarea>
+                          </div>
+
+                          <div>
+                            <label className="block text-gray-300 text-sm font-bold mb-1">¿Cómo te sentó?</label>
+                            <div className="flex justify-around space-x-2">
+                              {['Bien', 'Regular', 'Mal'].map(reaction => (
+                                <button
+                                  key={reaction}
+                                  onClick={() => setCurrentIngestionReaction(reaction)}
+                                  className={`px-4 py-2 text-sm rounded-md font-semibold transition-colors duration-200 ${
+                                    currentIngestionReaction === reaction
+                                      ? 'bg-blue-600 text-white shadow-md'
+                                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                                  }`}
+                                >
+                                  {reaction}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={addIngestion}
+                            className="w-full px-4 py-2 rounded-md font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                          >
+                            Añadir Comida del Día
+                          </button>
+                        </div> {/* Fin REGISTRO DE INGESTAS INDIVIDUALES */}
+
+                        {/* LISTADO DE INGESTAS DEL DÍA */}
+                        {dailyIngestas.length > 0 && (
+                          <div className="bg-gray-800 p-4 rounded-md shadow-sm mt-4">
+                            <h4 className="font-bold text-lg text-orange-300 mb-2">Comidas Registradas para hoy ({selectedDate}):</h4>
+                            <ul className="list-disc list-inside text-gray-200 space-y-2">
+                              {dailyIngestas.map((ingesta, index) => (
+                                <li key={index} className="flex justify-between items-center bg-gray-700 p-2 rounded-md">
+                                  <span>
+                                    <span className="font-semibold">{ingesta.type}:</span> {ingesta.description} (<span className={`font-semibold ${
+                                        ingesta.reaction === 'Bien' ? 'text-green-400' :
+                                        ingesta.reaction === 'Regular' ? 'text-yellow-400' : 'text-red-400'
+                                    }`}>{ingesta.reaction}</span>)
+                                  </span>
+                                  <button
+                                    onClick={() => removeIngestion(index)}
+                                    className="text-red-400 hover:text-red-600 text-sm ml-2"
+                                  >
+                                    Eliminar
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Notas Adicionales (se mantiene) */}
                         <div>
                           <label htmlFor="notes" className="block text-gray-300 text-sm font-bold mb-1">Notas Adicionales del día (ej. estrés, ejercicio, medicación, reacción general):</label>
                           <textarea
@@ -659,12 +791,12 @@
                           ></textarea>
                         </div>
 
-                        {/* Botón Guardar */}
+                        {/* Botón Guardar Registro del DÍA */}
                         <button
                           onClick={saveSymptomLog}
                           className="w-full px-4 py-2 rounded-md font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors duration-200 shadow-md"
                         >
-                          Guardar Registro
+                          Guardar Registro Completo del Día
                         </button>
                         {logMessage && (
                           <p className="text-center text-sm text-green-400 mt-2">{logMessage}</p>
